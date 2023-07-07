@@ -1,0 +1,98 @@
+.notFoundPage {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  padding: 3rem 5rem;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  max-height: 100vh;
+}
+.notFoundView {
+  background-image: url(../../../public/images/404-illustration.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 400px;
+  height: 100%;
+}
+.text {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #082561;
+}
+.notFoundHead {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 4.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #101828;
+}
+.notFoundParaghraph {
+  font-size: 1.5rem;
+  line-height: 30px;
+  margin-bottom: 30px;
+  color: #475467;
+}
+
+.notFoundPage .notFoundBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #d0d5dd;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 8px;
+  margin-right: 8px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 24px;
+}
+.btnColor {
+  background-color: #09296b !important;
+  color: #fff;
+}
+@media (max-width: 360px) {
+  .notFoundPage {
+    padding: 20px;
+  }
+}
+@media (max-width: 575px) {
+  .notFoundBtns {
+    display: grid !important;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .notFoundBtns .takeHome {
+    grid-row: 2/3;
+  }
+  .notFoundBtns .goBack {
+    grid-row: 1/2;
+  }
+  .notFoundPage {
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+  .notFoundView {
+    background-position: unset;
+  }
+  .notFoundHead {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  .notFoundParaghraph {
+    font-size: 1rem;
+    line-height: 20px;
+  }
+  .notFoundBtn {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+}

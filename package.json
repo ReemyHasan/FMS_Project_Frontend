@@ -1,0 +1,24 @@
+{
+  "name": "fms",
+  "version": "0.1.0",
+  "private": true,
+  "pnpify": true,
+  "packageManager": "yarn@3.5.1",
+  "dependencies": {
+    "@babel/core": "^7.22.1",
+    "next": "^13.4.4",
+    "react": "^18.2.0",
+    "styled-jsx": "^5.1.2",
+    "typescript": "^5.0.4",
+    "webpack": "^5.85.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@testing-library/user-event": "^14.4.3",
+    "css-loader": "^6.8.1",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.18"
+  }
+}

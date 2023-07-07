@@ -1,0 +1,35 @@
+.formHeader{
+    padding: 18px 100px;
+    gap: 187px;
+    width: 100%;
+    background: #FFFFFF;
+    border-bottom: 1px solid #EAECF0;
+}
+
+.formTitle{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: #344054;
+}
+
+.formContent{
+    background: #F9FAFB;
+    padding: 24px 100px;
+    height: 100%;
+}
+
+.cardItem{
+    margin: 24px;
+}
+
+.switchItemContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.switchItemContainer span {
+    margin: 0 6px;
+}
+

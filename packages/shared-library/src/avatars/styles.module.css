@@ -1,0 +1,21 @@
+.avatar {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.avatarBorder {
+    padding: 4px;
+    border-radius: 100%;
+}
+
+.transparentBackground {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.gray100Background {
+    background-color: var(--primary-gray-100) !important;
+}
+
+.gray200Background {
+    background-color: var(--primary-gray-200) !important;
+}
+

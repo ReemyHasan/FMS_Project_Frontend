@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+}
+
+[class^="ant-layout"],
+[class*=" ant-layout"] {
+  font-family: unset;
+}
+//antd-modal
+.ant-modal {
+  max-width: 90%;
+}
+.popup-li {
+  padding: 0;
+}
+
+.ant-dropdown-menu li {
+  padding: 0 !important;
+}
+//antd-dropdown
+.ant-dropdown {
+  min-width: 200px !important;
+  width: auto;
+
+  h4 {
+    margin: 10px;
+  }
+}
+.user-info-avatar {
+  cursor: pointer;
+}
+img {
+  max-width: 100%;
+}
+a {
+  color: @primary-color;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.fullContent {
+  width: 100% !important;
+}
+
+.fullHeight {
+  height: 100% !important;
+}
+
+.scrollRow {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 500px;
+}
+
+.scrollRow::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollRow::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.scrollRow::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.page-header {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 38px;
+  color: #101828;
+}
+
+#globalLoader {
+  position: fixed;
+  z-index: 9999;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.loader-spin {
+  text-align: center;
+}
+.ant-spin-dot {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+.ant-spin-dot-spin {
+  transform: rotate(45deg);
+  animation: antRotate 1.2s infinite linear;
+}
+.ant-spin-dot i {
+  width: 9px;
+  height: 9px;
+  border-radius: 100%;
+  background-color: #25215b;
+  transform: scale(0.75);
+  display: block;
+  position: absolute;
+  opacity: 0.3;
+  animation: antSpinMove 1s infinite linear alternate;
+  transform-origin: 50% 50%;
+}
+.ant-spin-dot i:nth-child(1) {
+  left: 0;
+  top: 0;
+}
+.ant-spin-dot i:nth-child(2) {
+  right: 0;
+  top: 0;
+  animation-delay: 0.4s;
+}
+.ant-spin-dot i:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  animation-delay: 0.8s;
+}
+.ant-spin-dot i:nth-child(4) {
+  left: 0;
+  bottom: 0;
+  animation-delay: 1.2s;
+}
+@keyframes antSpinMove {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes antRotate {
+  to {
+    transform: rotate(405deg);
+  }
+}

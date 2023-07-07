@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+:root {
+  /* Colors */
+  /* --primary-blue-600: #09296b;
+  --primary-blue-700: #082561;
+  --primary-blue-200: #5a709c;
+
+  --secondary-blue-700: #175cd3;
+  --secondary-blue-50: #eff8ff; */
+
+  --primary-blue-600: #120338;
+  --primary-blue-700: #22075e;
+  --primary-blue-200: #531dab;
+
+  --secondary-blue-700: #9254de;
+  --secondary-blue-50: #f9f0ff;
+
+  --primary-indego-700: #3538cd;
+  --primary-indego-50: #eef4ff;
+
+  --primary-gray-900: #101828;
+  --primary-gray-700: #344054;
+  --primary-gray-600: #475467;
+  --primary-gray-400: #98a2b3;
+  --primary-gray-200: #eaecf0;
+  --primary-gray-100: #8e9dbb;
+  --primary-gray-50: #f9fafb;
+  --primary-gray-25: #e6eaf0;
+  --borders-gray: #d0d5dd;
+
+  --secondary-gray: #eff2f5;
+  --secondary-gray-100: #f2f4f7;
+
+  --success-green: #12b76a;
+  --success-green-50: #ecfdf3;
+  --success-green-700: #027a48;
+}
+
+.avatar-xs-badge-container .ant-badge-dot {
+  background-color: var(--success-green);
+  width: 6px !important;
+  height: 6px !important;
+  position: absolute !important;
+  top: 27px !important;
+  right: 8px !important;
+  border: 1px solid white !important;
+}
+
+.avatar-sm-badge-container .ant-badge-dot {
+  background-color: var(--success-green);
+  width: 8px !important;
+  height: 8px !important;
+  position: absolute !important;
+  top: 33px !important;
+  right: 8px !important;
+  border: 1px solid white !important;
+}
+
+.avatar-md-badge-container .ant-badge-dot {
+  background-color: var(--success-green);
+  width: 10px !important;
+  height: 10px !important;
+  position: absolute !important;
+  top: 38px !important;
+  right: 8px !important;
+  border: 1px solid white !important;
+}
+
+.avatar-lg-badge-container .ant-badge-dot {
+  background-color: var(--success-green);
+  width: 12px !important;
+  height: 12px !important;
+  position: absolute !important;
+  top: 45px !important;
+  right: 8px !important;
+  border: 1px solid white !important;
+}
+
+.avatar-xl-badge-container .ant-badge-dot {
+  background-color: var(--success-green);
+  width: 14px !important;
+  height: 14px !important;
+  position: absolute !important;
+  top: 51px !important;
+  right: 8px !important;
+  border: 1px solid white !important;
+}
+
+.avatar-xxl-badge-container .ant-badge-dot {
+  background-color: var(--success-green);
+  width: 16px !important;
+  height: 16px !important;
+  position: absolute !important;
+  top: 58px !important;
+  right: 8px !important;
+  border: 1px solid white !important;
+}
+
+.companyDot .ant-badge-dot {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: url(./assets/icons/svg/company-dot.svg) !important;
+  background-size: contain !important;
+  border: 1px solid white !important;
+}
+
+.verifiedDot .ant-badge-dot {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: url(./assets/icons/svg/verified-dot.svg) !important;
+  background-size: contain !important;
+  border: none !important;
+}
+
+.fms-table thead tr th {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+  background-color: var(--primary-gray-50) !important;
+  border: none !important;
+  border-radius: 0px !important;
+  border-bottom: 1px solid var(--primary-gray-200) !important;
+}
+
+.fms-table thead tr th::before {
+  display: none !important;
+}
+
+.fms-table tbody tr td {
+  font-family: Inter !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: var(--primary-gray-600) !important;
+}

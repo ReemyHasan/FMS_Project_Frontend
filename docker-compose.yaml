@@ -1,0 +1,15 @@
+version: "3"
+services:
+  admin-front:
+    image: admin-front
+    container_name: admin-front
+    hostname: admin-front
+    build:
+      dockerfile: ./packages/admin/admin.Dockerfile
+      context: ./
+    ports:
+      - 7002:3000
+    networks:
+      - fms-network
+networks:
+  fms-network:

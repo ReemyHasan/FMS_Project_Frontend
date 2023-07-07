@@ -1,0 +1,35 @@
+.dashboardCardsContainer {
+    /* height: 35vh; */
+    /* width: 35vw; */
+    margin-top: 20px;
+    padding: 0;
+    box-shadow: 0 10px 6px rgba(17, 24, 39,3);
+    box-sizing: border-box;
+  }
+  
+  .dashboardChartsContainer {
+    height: 50.5vh;
+    width: 35vw;
+    margin-top: 20px;
+    padding: 0;
+    box-shadow: 0 10px 6px rgba(17, 24, 39,3);
+    box-sizing: border-box;
+  }
+  .chart {
+    width: 600px;
+    margin: 10%;
+    margin-top: 0px;
+  }
+  .pieChart{
+    height: 35vh;
+    padding: 5px;
+  }
+  .chartCardsContainer{
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 0;
+    box-shadow: 0 10px 6px rgba(17, 24, 39,3);
+    /* color: ; */
+
+  }
