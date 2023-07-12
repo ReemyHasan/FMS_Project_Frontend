@@ -21,10 +21,10 @@ const DynamicFormHeader = ({ className, title }: DynamicFormHeaderProps) => {
       <Col>
         <Row gutter={8}>
           <Col>
-            <FmsButton borderRadius= {"30"} type={"secondary"}>{t("cancel")}</FmsButton>
+            <FmsButton borderRadius= {32} type={"secondary"}>{t("cancel")}</FmsButton>
           </Col>
           <Col>
-            <FmsButton borderRadius= {"30"} htmlType={"submit"} type={"primary"}>
+            <FmsButton borderRadius= {32} type={"primary"}>
               {t("save")}
             </FmsButton>
           </Col>

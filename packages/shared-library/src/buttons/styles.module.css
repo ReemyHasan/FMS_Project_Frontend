@@ -25,6 +25,17 @@
     color: #FFFFFF !important;
     border: 1px solid var(--primary-blue-200) !important;
 }
+.danger {
+    background-color: rgb(250, 5, 5);
+    color: #FFFFFF;
+    border: 1px solid rgb(250, 5, 5);
+}
+
+.danger:hover {
+    background-color: rgb(252, 139, 139);
+    color: #FFFFFF !important;
+    border: 1px solid rgb(250, 5, 5) !important;
+}
 
 .secondary {
     background-color: #FFFFFF;
@@ -39,9 +50,9 @@
 }
 
 .traity {
-    background-color: var(--secondary-gray);
+    background-color: var(--primary-indego-50);
     color: var(--primary-blue-700);
-    border: 1px solid var(--secondary-gray);
+    border: 1px solid var(--secondary-gray-100);
 }
 
 .traity:hover {
@@ -51,15 +62,15 @@
 }
 
 .link {
-    background-color: #08348d;
+    background-color: var( --primary-blue-600);
     color: var(--primary-indego-50);
     border: none;
     box-shadow: none !important;
 }
 
 .link:hover {
-    background-color: rgba(121, 236, 67, 0.1);
-    color: var(--primary-gray-600) !important;
+    background-color: var(--primary-blue-700);
+    color: var(--secondary-gray-100) !important;
     border: none !important;
     box-shadow: none !important;
 }

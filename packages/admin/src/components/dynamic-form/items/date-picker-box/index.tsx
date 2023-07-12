@@ -7,7 +7,6 @@ const DatePickerBox = ({ name, className, label, ...rest }: InputBoxDto) => {
   return (
     <div >
       <div>{label}</div>
-        {/*// @ts-ignore*/} 
       <Field name={name}>
         {({ field, form }: FieldProps) => (
          <DatePicker
@@ -15,7 +14,7 @@ const DatePickerBox = ({ name, className, label, ...rest }: InputBoxDto) => {
             {...rest}
             className={`fullContent ${className}`}
             value={field.value ? moment(field.value) : null}
-            onChange={(date) => {
+            onChange={(date:any) => {
               form.setFieldValue(name, date ? date.toISOString() : null);
               form.setFieldTouched(name, true, false);
             }}

@@ -31,8 +31,8 @@ const EditButton = ({ id }) => {
   const router = useRouter(); // Get the router object from useRouter
 
   const handleEditClick = () => {
-    router.push(`/edit-user/${id}`); // Navigate to the edit page URL
+    router.push(`/edit-user`); // Navigate to the edit page URL
   };
 
-  return <FmsButton type = "link" onClick={handleEditClick}>Edit</FmsButton>; // Render a button with the handleEditClick function as the onClick handler
+  return <FmsButton type = "link" onClick={handleEditClick}>Edit</FmsButton>;
 };

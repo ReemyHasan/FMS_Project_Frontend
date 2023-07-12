@@ -10,16 +10,16 @@ export default function ShowUsers() {
   const [columns, setColumns] = useState({
     columns: Columns
 });
-
-  const [data, setData] = useState({
-    dataSource: DataSource
-});
+  const [data, setData] = useState(DataSource);
   return (
           <div>
             <FmsTable
               title={t("users")}
               columns={columns.columns}
-              data={{ dataSource: data.dataSource, total: data.dataSource.length }}
+              data={data}
+              rowSelection={{
+                type: "checkbox",
+              }}
               t={t}
               setData= {setData}
               setColumns={setColumns}

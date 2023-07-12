@@ -1,27 +1,28 @@
+// import { parseISO } from "date-fns";
 type RoutesType = {
   id: string;
   agentAddress: string;
-  timeStamp: string;
-  severety: string;
-  site: string;
-  deviceType: string;
+  timestamp: any;
+  severity: string;
+  specificTrap: string;
+  genericTrap: string;
 };
 
 export const DataSource: Array<RoutesType> = [
   {
     id: "1",
     agentAddress: "string1",
-    timeStamp: "Date1",
-    severety: "strin1",
-    site: "string1",
-    deviceType: "string1",
+    timestamp: 1679761119 * 1000,
+    severity: "warning",
+    specificTrap: "string1",
+    genericTrap: "string1",
   },
   {
     id: "2",
     agentAddress: "string2",
-    timeStamp: "Date2",
-    severety: "strin2",
-    site: "string2",
-    deviceType: "string2",
+    timestamp: 1679781139 * 1000,
+    severity: "error",
+    specificTrap: "string2",
+    genericTrap: "string2",
   },
 ];

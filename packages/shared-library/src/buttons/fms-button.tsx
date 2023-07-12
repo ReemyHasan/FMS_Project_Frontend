@@ -2,7 +2,7 @@ import React, { FunctionComponent, MouseEventHandler, ReactNode } from "react";
 import { Button } from "antd";
 import classes from "./styles.module.css";
 
-export type ButtonTypes = "primary" | "secondary" | "traity" | "link";
+export type ButtonTypes = "primary" | "secondary" | "traity" | "link" | "danger";
 
 interface fmsButtonProps {
   children: ReactNode;
