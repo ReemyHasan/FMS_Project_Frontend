@@ -11,12 +11,22 @@ import "@/../shared-library/globals.css";
 import AuthContextProvider from "@/src/context/auth-context";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
+import websocket from "../src/features/web-socket";
+import DataContext from "../src/context/trap-context";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { t } = useTranslation(TranslationFiles.COMMON);
-
+  const [data, setData] = React.useState([]);
+  const [new_val, setNewVal] = React.useState(null);
+  const contextValue = React.useMemo(() => ({ data, setData, websocket,new_val,setNewVal }), [
+    data,
+    setData,
+    websocket,
+    new_val,
+    setNewVal
+  ]);
   React.useEffect(() => {
     if (router.pathname === "/") {
       router.push("/dashboard");
@@ -46,10 +56,12 @@ export default function App({ Component, pageProps }: AppProps) {
             },
           }}
         >
-          <AuthContextProvider>
-            {/*// @ts-ignore*/}
-            <Component {...pageProps} />
-          </AuthContextProvider>
+          <DataContext.Provider value={contextValue}>
+            <AuthContextProvider>
+              {/*// @ts-ignore*/}
+              <Component {...pageProps} />
+            </AuthContextProvider>
+          </DataContext.Provider>
         </ANTDConfigProvider>
       </main>
     </Fragment>

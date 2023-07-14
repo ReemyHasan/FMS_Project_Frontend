@@ -1,7 +1,7 @@
 import * as React from "react";
 import Head from "next/head";
 import AppLayout from "@/src/components/layout";
-import { UserCard, FaultChart } from "@/src/features/dashboard";
+// import { UserCard, FaultChart } from "@/src/features/dashboard";
 import ChartComponent from "@/src/features/dashboard/chart";
 import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
@@ -18,11 +18,8 @@ export default function Dashboard() {
       </Head>
       <AppLayout>
         <main className={`app-main-container`}>
-          <div className={"page-header"}>{t("dashboard")}</div>
+          <div className={"page-header"}>{t("")}</div>
           <Row gutter={56}>
-            <UserCard userNumber={userNumber} />
-            <FaultChart />
-            <ChartComponent />
           </Row>
         </main>
       </AppLayout>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Modal } from "antd";
+import { Col, Modal, Row } from "antd";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 
@@ -28,7 +28,7 @@ export default function ShowDetailsPopup({ modalProps, setModalProps }: Props) {
         {variableBinding &&
           variableBinding.map((item: any, index: number) => (
             <div key={index}>
-              <span>{item.oid}</span>: <span>{item.value}</span>
+            <Row gutter={12}><Col span={32}>{item.oid}</Col>: <Col span={32}>{item.value}</Col></Row> 
             </div>
           ))}
       </div>

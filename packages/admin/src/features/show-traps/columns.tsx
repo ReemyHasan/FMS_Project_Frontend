@@ -91,7 +91,7 @@ export function getColumns(setModalProps:any) {
     dataIndex: "severity",
     key: "severity",
     resizable: true, 
-    render: (text:any) => <Col className={`severity-${text}`}>{text.toUpperCase()}</Col>,
+    render: (text:any) => <Col className={`severity-${text}`}>{text}</Col>,
     sorter: (a:any, b:any) => a.severity.localeCompare(b.severity),
     sortDirections: ['descend', 'ascend'],
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (

@@ -4665,6 +4665,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.2.4"],\
             ["@types/testing-library__jest-dom", "npm:5.14.6"],\
             ["antd", "virtual:e55d5f29c2c01fea14804dc6479aee63e867d7311f7a37302240a41485426b7f824b2ae3f35754369580f7336818c9162c00914d130c8396baad9eadb1e3c125#npm:5.6.1"],\
+            ["axios", "npm:1.4.0"],\
             ["chart.js", "npm:4.3.0"],\
             ["clsx", "npm:1.2.1"],\
             ["eslint", "npm:8.41.0"],\
@@ -7688,6 +7689,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["axios", [\
+        ["npm:1.4.0", {\
+          "packageLocation": "./.yarn/cache/axios-npm-1.4.0-4d7ce8ca3e-7fb6a4313b.zip/node_modules/axios/",\
+          "packageDependencies": [\
+            ["axios", "npm:1.4.0"],\
+            ["follow-redirects", "virtual:4d7ce8ca3e1e44d82523fba2ad95e1be18c4e9f8dec6d551377587540da3ed75bd8bd3e812280309a3b90cfdb0560f076f3552a20839f7f15665207a4fbd588a#npm:1.15.2"],\
+            ["form-data", "npm:4.0.0"],\
+            ["proxy-from-env", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["axobject-query", [\
         ["npm:3.2.1", {\
           "packageLocation": "./.yarn/cache/axobject-query-npm-3.2.1-b147b3f32c-a94047e702.zip/node_modules/axobject-query/",\
@@ -10473,6 +10486,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["webpack", "virtual:645dde2da37a41044d368b4b8addc1e0296f7f47608f56288d4652fd7dc7d3f9c7c0edf692fcee62357304081e6fc2095e98d4e392b5e856d65d372e47ac2eeb#npm:5.86.0"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["follow-redirects", [\
+        ["npm:1.15.2", {\
+          "packageLocation": "./.yarn/cache/follow-redirects-npm-1.15.2-1ec1dd82be-faa66059b6.zip/node_modules/follow-redirects/",\
+          "packageDependencies": [\
+            ["follow-redirects", "npm:1.15.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:4d7ce8ca3e1e44d82523fba2ad95e1be18c4e9f8dec6d551377587540da3ed75bd8bd3e812280309a3b90cfdb0560f076f3552a20839f7f15665207a4fbd588a#npm:1.15.2", {\
+          "packageLocation": "./.yarn/__virtual__/follow-redirects-virtual-359bc4c55c/0/cache/follow-redirects-npm-1.15.2-1ec1dd82be-faa66059b6.zip/node_modules/follow-redirects/",\
+          "packageDependencies": [\
+            ["follow-redirects", "virtual:4d7ce8ca3e1e44d82523fba2ad95e1be18c4e9f8dec6d551377587540da3ed75bd8bd3e812280309a3b90cfdb0560f076f3552a20839f7f15665207a4fbd588a#npm:1.15.2"],\
+            ["@types/debug", null],\
+            ["debug", null]\
+          ],\
+          "packagePeers": [\
+            "@types/debug",\
+            "debug"\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["for-each", [\
