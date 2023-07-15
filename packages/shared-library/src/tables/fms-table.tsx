@@ -12,6 +12,8 @@ interface fmsTableProps {
   setData: Function;
   setColumns: Function;
   rowSelection:any;
+  pageSizeOptions:Array<string>;
+  defaultPageSize:any
 }
 const FmsTable: FunctionComponent<fmsTableProps> = ({
   title,
@@ -20,7 +22,9 @@ const FmsTable: FunctionComponent<fmsTableProps> = ({
   t,
   setData,
   setColumns,
-  rowSelection
+  rowSelection,
+  pageSizeOptions,
+  defaultPageSize
 }) => {
  
   return (
@@ -42,8 +46,9 @@ const FmsTable: FunctionComponent<fmsTableProps> = ({
         bordered
         scroll={{ x: 1000 }}
         pagination={{ position: ['bottomLeft'], 
-        pageSizeOptions: ["10", "20", "50", "100"], 
-        showSizeChanger: true, locale: { items_per_page: "" } }}
+        pageSizeOptions: pageSizeOptions,
+        showSizeChanger: true, locale: { items_per_page: "" },
+        defaultPageSize:defaultPageSize , }}
         rowKey={"id"}
         // onChange={onChange}
       />

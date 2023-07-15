@@ -13,10 +13,10 @@ export default function Profile() {
         <title>{t("profile")}</title>
       </Head>
       <AppLayout>
-        <main className={`app-main-container`}>
-          <div className={"page-header"}>{t("profile")}</div>
+        {/* <main className={`app-main-container`}> */}
+          {/* <div className={"page-header"}>{t("profile")}</div> */}
         <ProfileForm />
-        </main>
+        {/* </main> */}
       </AppLayout>
     </Fragment>
   );

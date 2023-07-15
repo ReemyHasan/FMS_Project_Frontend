@@ -33,9 +33,9 @@ const AppNotifications = ({ data, setData }: AppNotificationsProps) => {
           </List.Item>
         )}
       />
-        <Row gutter={12}>
+        <Row gutter={24}>
           {" "}
-          <Col>
+          <Col span={12}>
             <FmsButton
               // className="seeNotifications"
               size={"small"}
@@ -48,7 +48,7 @@ const AppNotifications = ({ data, setData }: AppNotificationsProps) => {
               {t("see-more")}
             </FmsButton>
           </Col>
-          <Col>
+          <Col span={12}>
             <FmsButton size={"small"} type = "traity"  onClick={() => setData([])}>
               {t("confirm")}
             </FmsButton>

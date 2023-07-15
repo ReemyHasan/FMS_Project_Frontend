@@ -23,6 +23,8 @@ export default function ShowUsers() {
               t={t}
               setData= {setData}
               setColumns={setColumns}
+              pageSizeOptions={["10", "20", "50"]}
+              defaultPageSize={10}
             />
           </div>
   );

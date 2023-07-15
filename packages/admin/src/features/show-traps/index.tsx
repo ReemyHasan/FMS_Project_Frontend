@@ -104,6 +104,8 @@ export default function ShowTraps() {
           data={data1}
           t={t}
           setData={setData1}
+          pageSizeOptions={["20", "50", "100"]}
+          defaultPageSize={20}
         />
         <ShowDetailsPopup
           modalProps={modalProps}

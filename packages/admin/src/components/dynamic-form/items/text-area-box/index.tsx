@@ -1,17 +1,23 @@
-import React, {Fragment, Input} from "react";
+import { Input } from "antd";
 import { InputBoxDto } from "@/src/components/dynamic-form/dtos/input-box.dto";
 import { Field, FieldProps } from "formik";
-
+import React from "react";
 const TextAreaBox = ({ name, className, label }: InputBoxDto) => {
   return (
-    <Fragment>
-      <div>{label}</div>
+    <div data-testid="text-box">
       <Field name={name}>
         {({ field }: FieldProps) => (
-          <Input.TextArea {...field} className={`fullContent ${className}`} />
+          <div>
+            <label htmlFor={name}>{label}</label>
+            <Input.TextArea
+              {...field}
+              placeholder={label}
+              className={`fullContent ${className}`}
+            />
+          </div>
         )}
       </Field>
-    </Fragment>
+    </div>
   );
 };
 

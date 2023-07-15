@@ -13,6 +13,7 @@ import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import websocket from "../src/features/web-socket";
 import DataContext from "../src/context/trap-context";
+import '../src/styles/tailwind.css'
 const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {

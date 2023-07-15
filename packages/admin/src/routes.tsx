@@ -3,7 +3,7 @@ import DashboardIcon from "@/src/components/assets/custom-ant-icons/sidebar/dash
 import CustomerIcon from "@/src/components/assets/custom-ant-icons/sidebar/customer-icon";
 import TeamsIcon from "@/src/components/assets/custom-ant-icons/sidebar/teams-icon";
 import SchedulingIcon from "@/src/components/assets/custom-ant-icons/sidebar/scheduling-icon";
-import CommunicationsIcon from "@/src/components/assets/custom-ant-icons/sidebar/communications-icon";
+import AboutIcon from "@/src/components/assets/custom-ant-icons/sidebar/about-icon";
 import UsersIcon from "@/src/components/assets/custom-ant-icons/sidebar/users-icon";
 import SetupIcon from "@/src/components/assets/custom-ant-icons/sidebar/setup-icon";
 
@@ -35,9 +35,9 @@ export const routes: Array<RoutesType> = [
     label: "traps",
   },
   {
-    key: "communications",
-    icon: <CommunicationsIcon />,
-    label: "communications",
+    key: "about",
+    icon: <AboutIcon />,
+    label: "about",
   },
   {
     key: "users",
