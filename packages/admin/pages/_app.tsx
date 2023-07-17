@@ -40,6 +40,16 @@ export default function App({ Component, pageProps }: AppProps) {
       if (loader) loader.remove();
     }
   }, []);
+  useEffect(() => {
+    if (!websocket) {
+      return;
+    }
+    return () => {
+      if (websocket) {
+        websocket.close();
+      }
+    };
+  }, []);
   return (
 
     <Fragment>

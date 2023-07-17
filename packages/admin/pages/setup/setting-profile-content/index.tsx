@@ -4,7 +4,7 @@ import AppLayout from "@/src/components/layout";
 import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
-import Setting from "@/src/features/setting";
+import SettingProfileContent from "../../../src/features/setting/setting-profile";
 export default function Setup() {
   const { t } = useTranslation(TranslationFiles.COMMON);
   return (
@@ -14,9 +14,7 @@ export default function Setup() {
       </Head>
       <AppLayout>
         <main className={`app-main-container`}>
-        <div className=" w-full px-4 max-w-full flex-grow flex-1">
-              <Setting />
-            </div>
+          <SettingProfileContent />
           </main>
       </AppLayout>
     </Fragment>

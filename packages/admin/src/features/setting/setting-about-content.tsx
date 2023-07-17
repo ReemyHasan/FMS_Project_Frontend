@@ -1,16 +1,16 @@
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
+import React, { useState } from "react";
+import { Alert, Input, message } from "antd";
+import FmsButton from "../../../../shared-library/src/buttons/fms-button";
+import { ExclamationOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
-
-import Footer from "./footer";
-import { Alert } from "antd";
 import {
-  fetchAboutSettingData,
+  UpdateAboutSettingData,
   sendEmailMessage,
 } from "@/src/services/setting-service";
-
-export default function AboutContent() {
+import MainUtils from "../../utils/main";
+export default function SettingAboutContent() {
   const { t } = useTranslation(TranslationFiles.COMMON);
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -20,15 +20,7 @@ export default function AboutContent() {
   });
   const [sendingStatus, setSendingStatus] = useState("");
   const [data, setData] = useState([]);
-  useEffect(() => {
-    getAboutInfo();
-  }, []);
 
-  async function getAboutInfo() {
-    const response = await fetchAboutSettingData();
-    setData(response);
-    console.log(data);
-  }
   async function sendMessage() {
     const response = await sendEmailMessage(formData);
     console.log(response);
@@ -38,13 +30,67 @@ export default function AboutContent() {
       setSendingStatus("error");
     }
   }
-  const getTextValueByKey = (key) => {
-    const item = data.find((item) => item.key === key);
-    return item ? item.value : "";
+  async function UpdateAboutInfo() {
+    for (let i = 0; i < data.length; i++) {
+      console.log("data", data[i]);
+      if (!MainUtils.isEmptyValue( data[i].value)) {
+        const response = await UpdateAboutSettingData(data[i]);
+        console.log(response);
+        if (!MainUtils.isEmptyObject(response)) {
+          message.success(data[i].key+" Updated successfully");
+        } else {
+          message.error("error");
+        }
+      }
+    }
+  }
+  const handleInputChange = (key: string, value: string) => {
+    setData((prevData: any) => {
+      let dataArray = Array.isArray(prevData) ? prevData : Object.values(prevData);
+      const index = dataArray.findIndex((item: any) => item.key === key);
+      if (index !== -1) {
+        // If the object already exists, update its value property
+        return [
+          ...dataArray.slice(0, index),
+          { ...dataArray[index], value },
+          ...dataArray.slice(index + 1),
+        ];
+      } else {
+        // Otherwise, create a new object and add it to the array
+        return [
+          ...dataArray,
+          { key, value },
+        ];
+      }
+    });
   };
+
   return (
     <>
       <main>
+        <div className=" w-full px-4 max-w-full flex-grow flex-1 m-1 text-right">
+          <FmsButton
+            type="move"
+            size="large"
+            borderRadius="32"
+            onClick={() => {
+              UpdateAboutInfo();
+            }}
+          >
+            {"Save".toUpperCase()}
+          </FmsButton>
+          <span> </span>
+          <FmsButton
+            type="secondary"
+            size="large"
+            borderRadius="32"
+            onClick={() => {
+              router.push("/about");
+            }}
+          >
+            {"check-about-page".toUpperCase()}
+          </FmsButton>
+        </div>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -63,11 +109,23 @@ export default function AboutContent() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                  {getTextValueByKey("h1-text")}
+                    <Input
+                      placeholder={"h1-text"}
+                      value={data.find((item) => item.key === "h1-text")?.value}
+                      onChange={(e: any) =>
+                        handleInputChange("h1-text", e.target.value)
+                      }
+                    />
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
-                    {getTextValueByKey("p1-text")}
-                    </p>
+                    <Input
+                      placeholder={"p1-text"}
+                      value={data.find((item) => item.key === "p1-text")?.value}
+                      onChange={(e: any) =>
+                        handleInputChange("p1-text", e.target.value)
+                      }
+                    />
+                  </p>
                 </div>
               </div>
             </div>
@@ -84,12 +142,7 @@ export default function AboutContent() {
               viewBox="0 0 2560 100"
               x="0"
               y="0"
-            >
-              <polygon
-                className="text-blueGray-200 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
+            ></svg>
           </div>
         </div>
 
@@ -99,12 +152,29 @@ export default function AboutContent() {
               <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400"></div>
+                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+                      <ExclamationOutlined
+                        style={{ fontSize: "30px", color: "#fff" }}
+                        className={"ExclamationCircleOutlined "}
+                      />
+                    </div>
                     <h6 className="text-xl font-semibold">
-                    {getTextValueByKey("red-h")}
+                      <Input
+                        placeholder={"red-h"}
+                        value={data.find((item) => item.key === "red-h")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("red-h", e.target.value)
+                        }
+                      />
                     </h6>
                     <p className="mt-2 mb-4 text-blueGray-500">
-                    {getTextValueByKey("red-p")}
+                      <Input.TextArea
+                        placeholder={"red-p"}
+                        value={data.find((item) => item.key === "red-p")?.value}
+                      onChange={(e: any) =>
+                        handleInputChange("red-p", e.target.value)
+                      }
+                      />
                     </p>
                   </div>
                 </div>
@@ -113,12 +183,29 @@ export default function AboutContent() {
               <div className="w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400"></div>
+                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
+                      <ExclamationOutlined
+                        style={{ fontSize: "30px", color: "#fff" }}
+                        className={"ExclamationCircleOutlined "}
+                      />
+                    </div>
                     <h6 className="text-xl font-semibold">
-                    {getTextValueByKey("blue-h")}
+                      <Input
+                        placeholder={"blue-h"}
+                        value={data.find((item) => item.key === "blue-h")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("blue-h", e.target.value)
+                        }
+                      />
                     </h6>
                     <p className="mt-2 mb-4 text-blueGray-500">
-                    {getTextValueByKey("blue-p")}
+                      <Input.TextArea
+                        placeholder={"blue-p"}
+                        value={data.find((item) => item.key === "blue-p")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("blue-p", e.target.value)
+                        }
+                      />
                     </p>
                   </div>
                 </div>
@@ -127,12 +214,29 @@ export default function AboutContent() {
               <div className="pt-6 w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400"></div>
+                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
+                      <ExclamationOutlined
+                        style={{ fontSize: "30px", color: "#fff" }}
+                        className={"ExclamationCircleOutlined "}
+                      />
+                    </div>
                     <h6 className="text-xl font-semibold">
-                    {getTextValueByKey("green-h")}
+                      <Input
+                        placeholder={"green-h"}
+                        value={data.find((item) => item.key === "green-h")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("green-h", e.target.value)
+                        }
+                      />
                     </h6>
                     <p className="mt-2 mb-4 text-blueGray-500">
-                    {getTextValueByKey("green-p")} 
+                      <Input.TextArea
+                        placeholder={"green-p"}
+                        value={data.find((item) => item.key === "green-p")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("green-p", e.target.value)
+                        }
+                      />
                     </p>
                   </div>
                 </div>
@@ -141,12 +245,29 @@ export default function AboutContent() {
 
             <div className="flex flex-wrap items-center mt-32">
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-                <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"></div>
+                <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
+                  <ExclamationOutlined
+                    style={{ fontSize: "30px", color: "#000" }}
+                    className={"ExclamationCircleOutlined "}
+                  />
+                </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                {getTextValueByKey("section2-h3")}
+                  <Input
+                    placeholder={"section2-h3"}
+                    value={data.find((item) => item.key === "section2-h3")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("section2-h3", e.target.value)
+                        }
+                  />
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                {getTextValueByKey("section2-p")}
+                  <Input.TextArea
+                    placeholder={"section2-p"}
+                    value={data.find((item) => item.key === "section2-p")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("section2-p", e.target.value)
+                        }
+                  />
                 </p>
               </div>
 
@@ -170,10 +291,16 @@ export default function AboutContent() {
                       ></polygon>
                     </svg>
                     <h4 className="text-xl font-bold text-white">
-                      {t("top-services")}
+                      {"top-services"}
                     </h4>
                     <p className="text-md font-light mt-2 text-white">
-                    {getTextValueByKey("topservice-p")}
+                      <Input.TextArea
+                        placeholder={"topservice-p"}
+                        value={data.find((item) => item.key === "topservice-p")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("topservice-p", e.target.value)
+                        }
+                      />
                     </p>
                   </blockquote>
                 </div>
@@ -214,12 +341,29 @@ export default function AboutContent() {
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
                 <div className="md:pr-12">
-                  <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blueGray-200"></div>
+                  <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blueGray-200">
+                    <ExclamationOutlined
+                      style={{ fontSize: "30px", color: "#000" }}
+                      className={"ExclamationCircleOutlined "}
+                    />
+                  </div>
                   <h3 className="text-3xl font-semibold">
-                  {getTextValueByKey("section3-h")}
+                    <Input
+                      placeholder={"section3-h"}
+                      value={data.find((item) => item.key === "section3-h")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("section3-h", e.target.value)
+                        }
+                    />
                   </h3>
                   <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                  {getTextValueByKey("section3-p")}
+                    <Input.TextArea
+                      placeholder={"section3-p"}
+                      value={data.find((item) => item.key === "section3-p")?.value}
+                        onChange={(e: any) =>
+                          handleInputChange("section3-p", e.target.value)
+                        }
+                    />
                   </p>
                 </div>
               </div>
@@ -231,9 +375,23 @@ export default function AboutContent() {
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">{getTextValueByKey("Hero-title")}</h2>
+                <h2 className="text-4xl font-semibold">
+                  <Input
+                    placeholder={"Hero-title"}
+                    value={data.find((item) => item.key === "Hero-title")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("Hero-title", e.target.value)
+                    }
+                  />
+                </h2>
                 <p className="text-lg leading-relaxed m-4 text-blueGray-500">
-                {getTextValueByKey("Hero-p")}
+                  <Input.TextArea
+                    placeholder={"Hero-p"}
+                    value={data.find((item) => item.key === "Hero-p")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("Hero-p", e.target.value)
+                    }
+                  />
                 </p>
               </div>
             </div>
@@ -326,28 +484,87 @@ export default function AboutContent() {
           <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
             <div className="flex flex-wrap text-center justify-center">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold text-white">MORE IFO</h2>
+                <h2 className="text-4xl font-semibold text-white">{t("more-info").toUpperCase}</h2>
               </div>
             </div>
             <div className="flex flex-wrap mt-12 justify-center">
               <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"></div>
+                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+                  <ExclamationOutlined
+                    style={{ fontSize: "30px", color: "#000" }}
+                    className={"ExclamationCircleOutlined "}
+                  />
+                </div>
                 <h6 className="text-xl mt-5 font-semibold text-white">
-                {getTextValueByKey("moreInfo-h1")}
+                  <Input
+                    placeholder={"moreInfo-h1"}
+                    value={data.find((item) => item.key === "moreInfo-h1")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("moreInfo-h1", e.target.value)
+                    }
+                  />
                 </h6>
-                <p className="mt-2 mb-4 text-blueGray-400">{getTextValueByKey("moreInfo-p1")}</p>
+                <p className="mt-2 mb-4 text-blueGray-400">
+                  <Input.TextArea
+                    placeholder={"moreInfo-p1"}
+                    value={data.find((item) => item.key === "moreInfo-p1")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("moreInfo-p1", e.target.value)
+                    }
+                  />
+                </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"></div>
-                <h5 className="text-xl mt-5 font-semibold text-white">{getTextValueByKey("moreInfo-h2")}</h5>
-                <p className="mt-2 mb-4 text-blueGray-400">{getTextValueByKey("moreInfo-p2")}</p>
-              </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"></div>
+                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+                  <ExclamationOutlined
+                    style={{ fontSize: "30px", color: "#000" }}
+                    className={"ExclamationCircleOutlined "}
+                  />
+                </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                {getTextValueByKey("moreInfo-h3")}
+                  <Input
+                    placeholder={"moreInfo-h2"}
+                    value={data.find((item) => item.key === "moreInfo-h2")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("moreInfo-h2", e.target.value)
+                    }
+                  />
                 </h5>
-                <p className="mt-2 mb-4 text-blueGray-400">{getTextValueByKey("moreInfo-p3")}</p>
+                <p className="mt-2 mb-4 text-blueGray-400">
+                  <Input.TextArea
+                    placeholder={"moreInfo-p2"}
+                    value={data.find((item) => item.key === "moreInfo-p2")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("moreInfo-p2", e.target.value)
+                    }
+                  />
+                </p>
+              </div>
+              <div className="w-full lg:w-3/12 px-4 text-center">
+                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+                  <ExclamationOutlined
+                    style={{ fontSize: "30px", color: "#000" }}
+                    className={"ExclamationCircleOutlined "}
+                  />
+                </div>
+                <h5 className="text-xl mt-5 font-semibold text-white">
+                  <Input
+                    placeholder={"moreInfo-h3"}
+                    value={data.find((item) => item.key === "moreInfo-h3")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("moreInfo-h3", e.target.value)
+                    }
+                  />
+                </h5>
+                <p className="mt-2 mb-4 text-blueGray-400">
+                  <Input.TextArea
+                    placeholder={"moreInfo-p3"}
+                    value={data.find((item) => item.key === "moreInfo-p3")?.value}
+                    onChange={(e: any) =>
+                      handleInputChange("moreInfo-p3", e.target.value)
+                    }
+                  />
+                </p>
               </div>
             </div>
           </div>
@@ -370,7 +587,7 @@ export default function AboutContent() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="full-name"
                       >
-                        Full Name
+                      {t("full-name").toUpperCase()}
                       </label>
                       <input
                         type="text"
@@ -382,12 +599,13 @@ export default function AboutContent() {
                         }
                       />
                     </div>
+
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="email"
                       >
-                        Email
+                        {t("email")}
                       </label>
                       <input
                         type="email"
@@ -405,7 +623,7 @@ export default function AboutContent() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Message
+                        {t("message")}
                       </label>
                       <textarea
                         rows="4"
@@ -424,7 +642,7 @@ export default function AboutContent() {
                         type="button"
                         onClick={sendMessage}
                       >
-                        Send Message
+                        {t("send")}
                       </button>
                       <div>
                         {sendingStatus == "success" && (
@@ -445,7 +663,6 @@ export default function AboutContent() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

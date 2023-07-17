@@ -13,8 +13,14 @@ const Login = () => {
   const [cookies, setCookies] = useCookies([AUTH_TOKEN]);
 
   const onFinishSend = (values: any) => {
+    if(values.email=="admin@f.com"){
     setCookies(AUTH_TOKEN, values.email);
     router.push("/");
+    }
+    else if(values.email=="user@f.com"){
+      setCookies(AUTH_TOKEN, values.email);
+      router.push("/user");      
+    }
   };
   return (
     <div data-testid="login-component">

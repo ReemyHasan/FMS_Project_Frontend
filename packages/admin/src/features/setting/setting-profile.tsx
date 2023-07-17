@@ -1,10 +1,22 @@
+import { useState } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import FmsButton from "../../../../shared-library/src/buttons/fms-button";
-import { useRouter } from "next/router";
-const ProfileForm = () => {
+import { DatePicker, Input, Select } from "antd";
+import { FileAddOutlined, UploadOutlined } from "@ant-design/icons";
+
+const SettingProfileContent = () => {
   const { t } = useTranslation(TranslationFiles.COMMON);
-  const router = useRouter();
+  const [imageSrc, setImageSrc] = useState("/images/Reem.jpg");
+  
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImageSrc(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
   return (
     <>
      <main className="profile-page">
@@ -47,12 +59,34 @@ const ProfileForm = () => {
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                    <div className="relative">
-                      <img
-                        alt="..."
-                        src="/images/Reem.jpg"
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                      />
+                  <div className="relative">
+                  <label htmlFor="image-upload" className="file-input-label">
+                        <img
+                          alt="..."
+                          src={imageSrc}
+                          className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                        />
+                        
+                        <div className="add-image-button pd-top">
+                        <FmsButton 
+                        type={"secondary"} 
+                        className={"pd-top"}
+                        size={"large"}
+                        borderRadius={8}
+                        onclick={
+                            handleImageUpload
+                        }
+                        >
+                        <input
+                          type="file"
+                          id="image-upload"
+                          accept=".jpg,.jpeg,.png"
+                          onChange={handleImageUpload}
+                        //   className="hidden"
+                        />
+                        </FmsButton>
+                        </div>
+                      </label>
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -61,11 +95,9 @@ const ProfileForm = () => {
                         className="bg-blueGray-700 active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         type="primary"
                         borderRadius="32"
-                        onClick={() => {
-                          router.push("/setup/setting-profile-content");
-                        }}
+
                       >
-                        {t("edit")}
+                        {t("save")}
                       </FmsButton>
                     </div>
                   </div>
@@ -79,20 +111,25 @@ const ProfileForm = () => {
                          
                         </span>
                       </div>
-                      <div className="mr-4 p-3 text-center">
-                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          10
+                      <div className="pd-top mr-4 p-3 text-center">
+                        <span className=" text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                        <Select
+                    placeholder={t("gender")}
+                    //   value={""}
+                      onChange={(e: any) =>
+                        {}
+                      }
+                    />
                         </span>
-                        <span className="text-sm text-blueGray-400">
-                          {t("gender")}
-                        </span>
+                        
                       </div>
-                      <div className="lg:mr-4 p-3 text-center">
+                      <div className="pd-top lg:mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          89
-                        </span>
-                        <span className="text-sm text-blueGray-400">
-                          {t("start-working-date")}
+                        <DatePicker 
+                      placeholder={t("start-working-date")}
+                      //   value={""}
+                        onChange={(e: any) =>
+                          {}}/>
                         </span>
                       </div>
                     </div>
@@ -100,11 +137,23 @@ const ProfileForm = () => {
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    REEM HASAN
+                  <Input
+                  className={"med-size"}
+                      placeholder={"name"}
+                    //   value={""}
+                      onChange={(e: any) =>
+                        {}
+                      }/>
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                    <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-                    Syria-Damascus
+                    <i className="fas fa-map-marker-alt text-lg text-blueGray-400"></i>
+                    <Input
+                    className={"med-size"}
+                      placeholder={"country"}
+                    //   value={""}
+                      onChange={(e: any) =>
+                        {}
+                      }/>
                   </div>
                   
                 </div>
@@ -112,15 +161,25 @@ const ProfileForm = () => {
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      Site Admin 
+                      <Input
+                      placeholder={"role"}
+                    //   value={""}
+                      onChange={(e: any) =>
+                        {}
+                      }/>
                       </p>
                       <div className="mb-2 text-lightBlue-500 mt-10">
                     <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                    {t("role")}
+                    {t("description")}
                   </div>
                   <div className="mb-2 text-lightBlue-500">
                     <i className="fas fa-university mr-2 text-lg "></i>
-                    Site Admin
+                    <Input.TextArea
+                      placeholder={"description"}
+                    //   value={""}
+                      onChange={(e: any) =>
+                        {}
+                      }/>
                   </div>
                     </div>
                   </div>
@@ -133,4 +192,4 @@ const ProfileForm = () => {
     </>
   );
 };
-export default ProfileForm;
+export default SettingProfileContent;

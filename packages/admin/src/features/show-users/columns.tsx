@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"; 
 import FmsButton from "../../../../shared-library/src/buttons/fms-button";
-export const Columns = [
+export function getColumns(setModalProps:any) { 
+  return [
   {
     title: "Name",
     dataIndex: "name",
@@ -19,20 +20,14 @@ export const Columns = [
   {
     title: "Actions",
     key: "actions",
-    render: (text:any, record:any) => (
-      <span>
-        <EditButton id={record.id} />
-      </span>
+    render: (text: any, record: any) => (
+      <FmsButton
+        type="primary"
+        onClick={() => setModalProps({ isOpen: true, data: null})}
+      >
+        {"edit"}
+      </FmsButton>
     ),
   },
 ];
-
-const EditButton = ({ id }) => {
-  const router = useRouter(); // Get the router object from useRouter
-
-  const handleEditClick = () => {
-    router.push(`/edit-user`); // Navigate to the edit page URL
-  };
-
-  return <FmsButton type = "link" onClick={handleEditClick}>Edit</FmsButton>;
 };
