@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 import Image from "next/image";
 import AuthWrapper from "./auth-wrapper";
@@ -10,18 +11,32 @@ import router from "next/router";
 
 const Login = () => {
   const { t } = useTranslation(TranslationFiles.COMMON);
-  const [cookies, setCookies] = useCookies([AUTH_TOKEN]);
+  const [cookies, setCookie, removeCookie] = useCookies([AUTH_TOKEN]);
 
   const onFinishSend = (values: any) => {
     if(values.email=="admin@f.com"){
-    setCookies(AUTH_TOKEN, values.email);
-    router.push("/");
+      setCookie(AUTH_TOKEN, values.email, { maxAge: 60 }); 
+      router.push("/");
     }
     else if(values.email=="user@f.com"){
-      setCookies(AUTH_TOKEN, values.email);
-      router.push("/user");      
+      setCookie(AUTH_TOKEN, values.email, { maxAge: 60 });
+      router.push("/user/landing");      
     }
   };
+
+  const removeCookieAfterOneHour = () => {
+    removeCookie(AUTH_TOKEN);
+  };
+
+  // call the removeCookieAfterOneHour function after one hour (3600000 milliseconds)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      removeCookieAfterOneHour();
+    }, 60000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
   return (
     <div data-testid="login-component">
       <AuthWrapper>

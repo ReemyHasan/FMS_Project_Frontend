@@ -9,6 +9,7 @@ import {
   fetchAboutSettingData,
   sendEmailMessage,
 } from "@/src/services/setting-service";
+import MainUtils from "@/src/utils/main";
 
 export default function AboutContent() {
   const { t } = useTranslation(TranslationFiles.COMMON);
@@ -38,9 +39,11 @@ export default function AboutContent() {
       setSendingStatus("error");
     }
   }
-  const getTextValueByKey = (key) => {
-    const item = data.find((item) => item.key === key);
+  const getTextValueByKey = (key:any) => {
+    if(!MainUtils.isEmptyValue(data)){
+    const item = data.find((item:any) => item.key === key);
     return item ? item.value : "";
+    }
   };
   return (
     <>

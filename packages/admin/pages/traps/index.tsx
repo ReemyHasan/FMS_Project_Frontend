@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import ShowTraps from "@/src/features/show-traps";
-export default function Users() {
+export default function Traps() {
   const { t } = useTranslation(TranslationFiles.COMMON);
  
   return (

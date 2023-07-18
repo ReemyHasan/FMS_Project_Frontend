@@ -1,24 +1,27 @@
 import * as React from "react";
+import { useState } from "react";
 import Head from "next/head";
-import AppLayout from "@/src/components/layout";
-import  DashboardComponent from "@/src/features/dashboard";
 import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
-export default function Dashboard() {
+import ShowTraps from "@/src/features/show-traps";
+import UserLayout from "../../../src/components/user-layout";
+export default function Traps() {
   const { t } = useTranslation(TranslationFiles.COMMON);
-
+ 
   return (
     <Fragment>
       <Head>
-        <title>{t("dashboard")}</title>
+        <title>{t("traps")}</title>
       </Head>
-      <AppLayout>
+      <UserLayout>
         <main className={`app-main-container`}>
-          <div className={"page-header"}>{t("")}</div>
-          <DashboardComponent />
+          <div className={"page-header"}>{t("new-traps")}</div>
+          <div>
+           <ShowTraps />
+          </div>
         </main>
-      </AppLayout>
+      </UserLayout>
     </Fragment>
   );
 }

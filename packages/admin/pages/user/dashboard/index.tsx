@@ -1,6 +1,6 @@
 import * as React from "react";
 import Head from "next/head";
-import AppLayout from "@/src/components/layout";
+import UserLayout from "../../../src/components/user-layout";
 import  DashboardComponent from "@/src/features/dashboard";
 import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
@@ -13,12 +13,12 @@ export default function Dashboard() {
       <Head>
         <title>{t("dashboard")}</title>
       </Head>
-      <AppLayout>
+      <UserLayout>
         <main className={`app-main-container`}>
           <div className={"page-header"}>{t("")}</div>
           <DashboardComponent />
         </main>
-      </AppLayout>
+      </UserLayout>
     </Fragment>
   );
 }
