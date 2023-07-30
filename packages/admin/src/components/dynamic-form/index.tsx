@@ -16,21 +16,23 @@ const DynamicForm = ({
 }: DynamicFormDto) => {
   return (
     <Fragment>
-      <Formik
+      {/* <Formik
         enableReinitialize
         initialValues={initialValues}
         onSubmit={onFinish}
         validationSchema={schema}
-      >
+      > */}
         {() => (
           <Form>
             <DynamicFormHeader
               className={className?.formHeaderClassName}
               title={title}
+              onSave={onFinish} 
             />
-            <Row
+          <Row
               className={`${styles.formContent} ${className?.formContentClassName}`}
             >
+                {/* 
               {formCol?.map((col, index) => (
                 <Col span={col?.span} key={index}>
                   {col?.cards?.map((card, index) => (
@@ -49,11 +51,11 @@ const DynamicForm = ({
                     </Card>
                   ))}
                 </Col>
-              ))}
-            </Row>
+              ))}*/}
+            </Row> 
           </Form>
         )}
-      </Formik>
+      {/* </Formik> */}
     </Fragment>
   );
 };

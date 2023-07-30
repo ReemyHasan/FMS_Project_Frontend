@@ -1,8 +1,12 @@
 import axios from "axios";
 import {TrapURL} from "../data/constant/app-constant";
-export const fetchData = async () => {
+export const fetchData = async (token:any) => {
   try {
-    const response = await axios.get(TrapURL);
+    const response = await axios.get(TrapURL,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (response.data) {
       const transformedData = response.data.map((item:any) => ({
         id: item.id,

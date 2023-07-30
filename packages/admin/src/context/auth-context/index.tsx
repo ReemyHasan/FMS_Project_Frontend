@@ -1,4 +1,4 @@
-import { AUTH_TOKEN } from "@/src/data/constant/app-constant";
+// import { AUTH_TOKEN } from "@/src/data/constant/app-constant";
 import router from "next/router";
 import { createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
@@ -7,24 +7,32 @@ export const AuthContext = createContext({});
 const AuthContextProvider = (props: { children: React.ReactNode }) => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
 
-  const [cookies, removeCookies] = useCookies([AUTH_TOKEN]);
+  const [cookies, removeCookie] = useCookies(["role", "token"]);
   useEffect(() => {
-    if (cookies[AUTH_TOKEN]) {
+    if (cookies["token"]) { 
       setAuthenticated(true);
     } else {
       setAuthenticated(false);
       router.push("/sign-in");
     }
-  }, [cookies[AUTH_TOKEN]]);
+  }, [cookies]); 
 
   const logout = async () => {
-    removeCookies(AUTH_TOKEN, { path: "/", sameSite: true });
-    window.location.href = "/sign-in";
+    try {
+      removeCookie("role", "", { path: "/", expires: new Date(0) });
+      removeCookie("token", "", { path: "/", expires: new Date(0) });
+      // removeCookie("role","");
+      // removeCookie("token","");
+      window.location.href = "/sign-in";
+    } catch (error) {
+      console.error("Error while removing cookies:", error);
+    }
   };
 
   return (
     <AuthContext.Provider
       value={{
+        authenticated: authenticated,
         logout: logout,
         setAuthenticated: setAuthenticated,
       }}

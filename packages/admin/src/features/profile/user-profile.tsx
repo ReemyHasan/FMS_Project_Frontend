@@ -1,48 +1,10 @@
-import { useState, useEffect } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import FmsButton from "../../../../shared-library/src/buttons/fms-button";
-import { DatePicker, Input, Select, message } from "antd";
-import { getUserInfo, UpdateUserInfo } from "@/src/services/user-service";
-import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
-const SettingProfileContent = () => {
+const UserProfileForm = () => {
   const { t } = useTranslation(TranslationFiles.COMMON);
-  const [data, setData] = useState([]);
-  const [cookies] = useCookies([]);
   const router = useRouter();
-  useEffect(() => {
-    async function fetchUserInfo() {
-      try {
-        const response = await getUserInfo(cookies["username"], cookies["token"]);
-        setData(response);
-        console.log(response);
- 
-      } catch (error) {
-
-      }
-    }
-  
-    fetchUserInfo();
-  }, []);
-  const handleUpdate = async () => {
-    try {
-      const response = await UpdateUserInfo(
-        data,
-        cookies["token"],
-        cookies["role"]
-      );
-
-      message.success("your profile information updated successfully.");
-      router.push("/profile");
-    } catch (error) {
-      message.error("Error updating profile information.");
-    }
-  };
-
-  if (data.length === 0) {
-    return <div>Loading...</div>;
-  }
   return (
     <>
      <main className="profile-page">
@@ -85,20 +47,27 @@ const SettingProfileContent = () => {
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                  <div className="relative">
+                    <div className="relative">
+                      <img
+                        alt="..."
+                        src="/images/Reem.jpg"
+                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                      />
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                    <div className="py-6 px-3 mt-32 sm:mt-0">
+                    {/* <div className="py-6 px-3 mt-32 sm:mt-0">
                       <FmsButton
                         className="bg-blueGray-700 active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         type="primary"
                         borderRadius="32"
-                        onClick={handleUpdate}
+                        onClick={() => {
+                          router.push("/setup/setting-profile-content");
+                        }}
                       >
-                        {t("save")}
+                        {t("edit")}
                       </FmsButton>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
@@ -110,22 +79,20 @@ const SettingProfileContent = () => {
                          
                         </span>
                       </div>
-                      <div className="pd-top mr-4 p-3 text-center">
-                        <span className=" text-xl font-bold block  tracking-wide text-blueGray-600">
-                        <Select 
-                        value={data.gender}
-                        onChange={(e) =>
-                setData({ ...data, gender: e })
-              }>
-                <Select.Option value="male">{t("male")}</Select.Option>
-                <Select.Option value="female">{t("female")}</Select.Option>
-              </Select>
-                        </span>
-                        
-                      </div>
-                      <div className="pd-top lg:mr-4 p-3 text-center">
+                      <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                       {data.workingDate}
+                          10
+                        </span>
+                        <span className="text-sm text-blueGray-400">
+                          {t("gender")}
+                        </span>
+                      </div>
+                      <div className="lg:mr-4 p-3 text-center">
+                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                          89
+                        </span>
+                        <span className="text-sm text-blueGray-400">
+                          {t("start-working-date")}
                         </span>
                       </div>
                     </div>
@@ -133,60 +100,19 @@ const SettingProfileContent = () => {
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                  <Input
-                  className={"med-size"}
-                      placeholder={"username"}
-                      value={data.username}
-              onChange={(e) =>
-                setData({ ...data, username: e.target.value })
-              }
-            />
+                    REEM HASAN
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                    <i className="fas fa-map-marker-alt text-lg text-blueGray-400"></i>
-                    <Input
-                  className={"med-size"}
-                      placeholder={"username"}
-                      value={data.country}
-              onChange={(e) =>
-                setData({ ...data, country: e.target.value })
-              }
-            />
+                    <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+                    Syria-Damascus
                   </div>
-                  <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                    <i className="fas fa-map-marker-alt text-lg text-blueGray-400"></i>
-                    
-            <Input
-                  className={"med-size"}
-                      placeholder={"email"}
-                      value={data.email}
-              onChange={(e) =>
-                setData({ ...data, email: e.target.value })
-              }
-            />
-                  </div>   
+                  
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      <Input
-                  className={"med-size"}
-                      placeholder={"fname"}
-                      value={data.fname}
-              onChange={(e) =>
-                setData({ ...data, fname: e.target.value })
-              }
-            />
-            <span />
-               <Input
-                  className={"med-size"}
-                      placeholder={"lname"}
-                      value={data.lname}
-              onChange={(e) =>
-                setData({ ...data, lname: e.target.value })
-              }
-            />
+                      Site Admin 
                       </p>
                       <div className="mb-2 text-lightBlue-500 mt-10">
                     <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
@@ -194,16 +120,7 @@ const SettingProfileContent = () => {
                   </div>
                   <div className="mb-2 text-lightBlue-500">
                     <i className="fas fa-university mr-2 text-lg "></i>
-                    
-                    <Select 
-                       value={data.role}
-                       onChange={(e) =>
-                         setData({ ...data, role: e.target.value })
-                       }>
-                <Select.Option value="user">{t("user")}</Select.Option>
-                <Select.Option value="admin">{t("admin")}</Select.Option>
-              </Select>
-                  
+                    Site Admin
                   </div>
                     </div>
                   </div>
@@ -216,4 +133,4 @@ const SettingProfileContent = () => {
     </>
   );
 };
-export default SettingProfileContent;
+export default UserProfileForm;

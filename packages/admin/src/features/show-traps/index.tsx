@@ -10,7 +10,7 @@ import ShowDetailsPopup from "./show-details-popup";
 import axios from "axios";
 import { Spin } from "antd";
 import { fetchData } from "@/src/services/traps-service";
-
+import { useCookies } from "react-cookie";
 export default function ShowTraps() {
   const { t } = useTranslation(TranslationFiles.COMMON);
   const [modalProps, setModalProps] = useState({
@@ -20,9 +20,10 @@ export default function ShowTraps() {
   const { data, new_val, setNewVal } = useContext(DataContext);
   const [data1, setData1] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [cookies] = useCookies([]);
   useEffect(() => {
     setLoading(true);
-    fetchData().then((transformedData) => {
+    fetchData(cookies["token"]).then((transformedData) => {
       if(transformedData)
         setData1(transformedData);
       if(new_val!=null){

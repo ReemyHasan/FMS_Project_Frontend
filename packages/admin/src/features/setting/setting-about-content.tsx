@@ -10,6 +10,7 @@ import {
   sendEmailMessage,
 } from "@/src/services/setting-service";
 import MainUtils from "../../utils/main";
+import { useCookies } from "react-cookie";
 export default function SettingAboutContent() {
   const { t } = useTranslation(TranslationFiles.COMMON);
   const router = useRouter();
@@ -21,8 +22,9 @@ export default function SettingAboutContent() {
   const [sendingStatus, setSendingStatus] = useState("");
   const [data, setData] = useState([]);
 
+  const [cookies] = useCookies([]);
   async function sendMessage() {
-    const response = await sendEmailMessage(formData);
+    const response = await sendEmailMessage(formData,cookies["token"],cookies["role"]);
     console.log(response);
     if (response == true) {
       setSendingStatus("success");
@@ -34,7 +36,7 @@ export default function SettingAboutContent() {
     for (let i = 0; i < data.length; i++) {
       console.log("data", data[i]);
       if (!MainUtils.isEmptyValue( data[i].value)) {
-        const response = await UpdateAboutSettingData(data[i]);
+        const response = await UpdateAboutSettingData(data[i],cookies["token"],cookies["role"]);
         console.log(response);
         if (!MainUtils.isEmptyObject(response)) {
           message.success(data[i].key+" Updated successfully");

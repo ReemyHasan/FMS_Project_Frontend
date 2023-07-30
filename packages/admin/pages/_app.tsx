@@ -13,7 +13,8 @@ import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import websocket from "../src/features/web-socket";
 import DataContext from "../src/context/trap-context";
-import '../src/styles/tailwind.css'
+import '../src/styles/tailwind.css';
+import { useCookies } from "react-cookie";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -28,11 +29,13 @@ export default function App({ Component, pageProps }: AppProps) {
     new_val,
     setNewVal
   ]);
-  React.useEffect(() => {
-    if (router.pathname === "/") {
-      router.push("/dashboard");
-    }
-  }, [router]);
+  
+  const [cookies, setCookie, removeCookie] = useCookies([]);
+  // React.useEffect(() => {
+  //   if (router.pathname === "/") {
+  //     router.push("/dashboard");
+  //   }
+  // }, [router]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -40,14 +43,30 @@ export default function App({ Component, pageProps }: AppProps) {
       if (loader) loader.remove();
     }
   }, []);
+  // useEffect(() => {
+  //   if (!websocket) {
+  //     return;
+  //   }
+  //   return () => {
+  //     if (websocket) {
+  //       websocket.close();
+  //     }
+  //   };
+  // }, []);
+  
+  const removeCookieAfterOneHour = async () =>  {
+    removeCookie("role", { path: "/", sameSite: true });
+    removeCookie("token", { path: "/", sameSite: true });
+    window.location.href = "/sign-in";
+  };
+
   useEffect(() => {
-    if (!websocket) {
-      return;
-    }
+    const timeout = setTimeout(() => {
+      removeCookieAfterOneHour();
+    }, 360000 //000
+    );
     return () => {
-      if (websocket) {
-        websocket.close();
-      }
+      clearTimeout(timeout);
     };
   }, []);
   return (
@@ -68,8 +87,7 @@ export default function App({ Component, pageProps }: AppProps) {
           }}
         >
           <DataContext.Provider value={contextValue}>
-            <AuthContextProvider>
-              {/*// @ts-ignore*/}
+            <AuthContextProvider >
               <Component {...pageProps} />
             </AuthContextProvider>
           </DataContext.Provider>

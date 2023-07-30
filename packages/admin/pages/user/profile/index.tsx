@@ -4,7 +4,7 @@ import UserLayout from "../../../src/components/user-layout";
 import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
-import ProfileForm from "@/src/features/profile";
+import UserProfileForm from "@/src/features/profile/user-profile";
 export default function Profile() {
   const { t } = useTranslation(TranslationFiles.COMMON);
   return (
@@ -13,7 +13,7 @@ export default function Profile() {
         <title>{t("profile")}</title>
       </Head>
       <UserLayout > 
-        <ProfileForm />
+        <UserProfileForm />
       </UserLayout>
     </Fragment>
   );

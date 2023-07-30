@@ -1,38 +1,58 @@
-import React, { useEffect } from "react";
-import { Button, Checkbox, Col, Form, Input, Row } from "antd";
+import React, { useEffect , useState} from "react";
+import { Button, Checkbox, Col, Form, Input, Row, message } from "antd";
 import Image from "next/image";
 import AuthWrapper from "./auth-wrapper";
 import styles from "./auth-wrapper.module.css";
-import { AUTH_TOKEN } from "@/src/data/constant/app-constant";
 import { useCookies } from "react-cookie";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import router from "next/router";
 
+import {
+  login, getUserInfo
+} from "@/src/services/user-service";
+import MainUtils from "@/src/utils/main";
+
 const Login = () => {
   const { t } = useTranslation(TranslationFiles.COMMON);
-  const [cookies, setCookie, removeCookie] = useCookies([AUTH_TOKEN]);
+  const [cookies, setCookie, removeCookie] = useCookies([]);
 
-  const onFinishSend = (values: any) => {
-    if(values.email=="admin@f.com"){
-      setCookie(AUTH_TOKEN, values.email, { maxAge: 60 }); 
+  async function UserInfo(data:any,token:any) {
+    const response = await getUserInfo(data,token);
+    return response;
+  }
+  async function onFinishSend (values: any){
+    const response = await login(values);
+    if(!MainUtils.isEmptyObject( response)){
+      const info = await UserInfo(values.username, response.data);
+
+      setCookie("token", response.data); 
+      setCookie("role", info.role);
+      setCookie("username", info.username);
+      if(info.role=="admin"){
       router.push("/");
+      }
+      else if (info.role=="user"){
+        router.push("/user/landing");
+      }
+      message.success("successfully authenticated!!");
     }
-    else if(values.email=="user@f.com"){
-      setCookie(AUTH_TOKEN, values.email, { maxAge: 60 });
-      router.push("/user/landing");      
+    else{
+      message.error("credentials are not correct");
     }
   };
 
-  const removeCookieAfterOneHour = () => {
-    removeCookie(AUTH_TOKEN);
+  const removeCookieAfterOneHour = async () =>  {
+    removeCookie("role", { });
+    removeCookie("token", { });
+    window.location.href = "/sign-in";
   };
 
-  // call the removeCookieAfterOneHour function after one hour (3600000 milliseconds)
   useEffect(() => {
     const timeout = setTimeout(() => {
       removeCookieAfterOneHour();
-    }, 60000);
+    }, 360000 //000
+    );
     return () => {
       clearTimeout(timeout);
     };
@@ -55,21 +75,21 @@ const Login = () => {
         <Row>
           <Col span={24}>
             <Form name="basic" layout="vertical" onFinish={onFinishSend}>
-              <Form.Item label={t("email.label")} className={styles.formInput}>
+              <Form.Item label={t("username.label")} className={styles.formInput}>
                 <Form.Item
-                  name="email"
+                  name="username"
                   rules={[
                     {
                       required: true,
                       message: t("email.required-message"),
                     },
                     {
-                      type: "email",
+                      type:"string",
                     },
                   ]}
                 >
                   <Input
-                    placeholder={t("email.placeholder")}
+                    placeholder={t("username.placeholder")}
                     data-testid="email"
                   />
                 </Form.Item>

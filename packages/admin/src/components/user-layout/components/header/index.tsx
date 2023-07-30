@@ -8,40 +8,40 @@ import DataContext from "../../../../context/trap-context";
 const { Header } = Layout;
 
 export default function AppHeader() {
-  const { data, setData, websocket, setNewVal } = useContext(DataContext);
-  useEffect(() => {
-    if (!websocket) {
-      return;
-    }
-    websocket.onmessage = function (event:any) {
-      const message = JSON.parse(event.data);
-      console.log(message);
-      if (message.new_val != null) {
-        const newData = message.new_val;
-        const transformedData = {
-          flag:'0',
-          id: newData.id,
-          timestamp: newData.timestamp,
-          agentAddress: newData.agentAddress,
-          severity: newData.severity,
-          specificTrap: newData.specificTrap,
-          genericTrap: newData.genericTrap,
-          variableBindings: newData.variableBindings,
-        };
-        setNewVal(transformedData);
-        setData((prevData: any) => [...prevData, newData]);
-      }
-      else{
-        setNewVal({id:message.old_val.id,flag:-1,});
-      }
-    };
+  // const { data, setData, websocket, setNewVal } = useContext(DataContext);
+  // useEffect(() => {
+  //   if (!websocket) {
+  //     return;
+  //   }
+  //   websocket.onmessage = function (event:any) {
+  //     const message = JSON.parse(event.data);
+  //     console.log(message);
+  //     if (message.new_val != null) {
+  //       const newData = message.new_val;
+  //       const transformedData = {
+  //         flag:'0',
+  //         id: newData.id,
+  //         timestamp: newData.timestamp,
+  //         agentAddress: newData.agentAddress,
+  //         severity: newData.severity,
+  //         specificTrap: newData.specificTrap,
+  //         genericTrap: newData.genericTrap,
+  //         variableBindings: newData.variableBindings,
+  //       };
+  //       setNewVal(transformedData);
+  //       setData((prevData: any) => [...prevData, newData]);
+  //     }
+  //     else{
+  //       setNewVal({id:message.old_val.id,flag:-1,});
+  //     }
+  //   };
 
-    return () => {
-      // if (websocket) {
-      //   websocket.close();
-      // }
-    };
-  }, []);
+  //   return () => {
+  //     // if (websocket) {
+  //     //   websocket.close();
+  //     // }
+  //   };
+  // }, []);
 
 
   return (
@@ -59,9 +59,9 @@ export default function AppHeader() {
             <Col className={"app-language-switcher"}>
               <AppLanguageSwitcher />
             </Col>
-            <Col className={"app-notifications"}>
+            {/* <Col className={"app-notifications"}>
               <AppNotifications data={data} setData={setData} />
-            </Col>
+            </Col> */}
             <Col className={"app-user-info"}>
               <UserInfo />
             </Col>

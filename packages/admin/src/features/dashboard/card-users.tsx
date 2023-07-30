@@ -1,6 +1,6 @@
 import React from "react";
 import FmsTable from "../../../../shared-library/src/tables/fms-table";
-import { DataSource } from "../show-users/data-source";
+// import { DataSource } from "../show-users/data-source";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import FmsButton from "../../../../shared-library/src/buttons/fms-button";
@@ -40,7 +40,7 @@ export default function CardUsers() {
                 {"See all".toUpperCase()}
               </FmsButton>
             </div>
-          <FmsTable
+          {/* <FmsTable
             title={"users"}
             columns={Columns}
             data={DataSource}
@@ -49,7 +49,7 @@ export default function CardUsers() {
             // t={t}
             // setData={setData}
             // setColumns={setColumns}
-          />
+          /> */}
         </div>
       </div>
     </>

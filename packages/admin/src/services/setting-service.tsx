@@ -1,8 +1,13 @@
 import axios from "axios";
 import {SettingURL} from "../data/constant/app-constant";
-export const fetchAboutSettingData = async () => {
+export const fetchAboutSettingData = async (token:any,role:any) => {
   try {
-    const response = await axios.get(SettingURL+"/data");
+
+    const response = await axios.get(SettingURL+"/data",{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (response.data) {
       const data = response.data.map((item:any) => ({
         id: item.id,
@@ -18,38 +23,60 @@ export const fetchAboutSettingData = async () => {
   }
 };
 
-export const putAboutSettingData = async (data:any) => {
+export const putAboutSettingData = async (data:any,token:any,role:any) => {
+  if(role=="admin"){
     try {
-      const response = await axios.post(SettingURL+"/post",data);
+      const response = await axios.post(SettingURL+"/post",data,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
+  }
   };
 
-  export const deleteByKeyAboutSettingData = async (key:any) => {
+  export const deleteByKeyAboutSettingData = async (key:any,token:any,role:any) => {
+    if(role=="admin"){
     try {
-      const response = await axios.delete(SettingURL+`/delete/${key}`);
+      const response = await axios.delete(SettingURL+`/delete/${key}`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
+  }
   };
 
-  export const UpdateAboutSettingData = async (data:any) => {
+  export const UpdateAboutSettingData = async (data:any,token:any,role:any) => {
+    if(role=="admin"){
     try {
-      const response = await axios.put(SettingURL+`/update`, data);
+      const response = await axios.put(SettingURL+`/update`, data,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response);
       return response;
     } catch (error) {
       console.error(error);
       return error;
     }
+  }
   };
 
-  export const sendEmailMessage = async (data:any) => {
+  export const sendEmailMessage = async (data:any,token:any,role:any) => {
     try {
-      const response = await axios.post(SettingURL+`/send-message`, data);
+      const response = await axios.post(SettingURL+`/send-message`, data,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       return error;

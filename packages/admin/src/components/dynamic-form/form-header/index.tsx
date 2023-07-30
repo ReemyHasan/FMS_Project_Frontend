@@ -7,8 +7,9 @@ import { TranslationFiles } from "@/src/data/core";
 type DynamicFormHeaderProps = {
   className?: string;
   title: string;
+  onSave:  (values: any) => void;
 };
-const DynamicFormHeader = ({ className, title }: DynamicFormHeaderProps) => {
+const DynamicFormHeader = ({ className, title,onSave }: DynamicFormHeaderProps) => {
   const { t } = useTranslation(TranslationFiles.COMMON);
   return (
     <Row
@@ -20,11 +21,14 @@ const DynamicFormHeader = ({ className, title }: DynamicFormHeaderProps) => {
       </Col>
       <Col>
         <Row gutter={8}>
-          <Col>
+          {/* <Col>
             <FmsButton borderRadius= {32} type={"secondary"}>{t("cancel")}</FmsButton>
-          </Col>
+          </Col> */}
           <Col>
-            <FmsButton borderRadius= {32} type={"primary"}>
+            <FmsButton borderRadius= {32} 
+            type={"primary"}
+            onClick={onSave} 
+            >
               {t("save")}
             </FmsButton>
           </Col>

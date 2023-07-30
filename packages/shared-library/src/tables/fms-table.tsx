@@ -4,6 +4,7 @@ import {
   Tag,
 } from "antd";
 import classes from "./styles.module.css";
+import FmsButton from "../buttons/fms-button";
 interface fmsTableProps {
   title: string;
   columns: Array<any>;
@@ -13,7 +14,7 @@ interface fmsTableProps {
   setColumns: Function;
   rowSelection:any;
   pageSizeOptions:Array<string>;
-  defaultPageSize:any
+  defaultPageSize:any;
 }
 const FmsTable: FunctionComponent<fmsTableProps> = ({
   title,
@@ -24,7 +25,7 @@ const FmsTable: FunctionComponent<fmsTableProps> = ({
   setColumns,
   rowSelection,
   pageSizeOptions,
-  defaultPageSize
+  defaultPageSize,
 }) => {
  
   return (
@@ -35,8 +36,9 @@ const FmsTable: FunctionComponent<fmsTableProps> = ({
           data-testid="fms-table-total-count"
           className={classes.totalCountTag}
         >
-          {`${data.length} row`}
+          {data && `${data.length} row`}
         </Tag>
+   
       </div>
       <Table
         className="fms-table"

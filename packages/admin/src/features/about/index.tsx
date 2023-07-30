@@ -11,8 +11,10 @@ import {
 } from "@/src/services/setting-service";
 import MainUtils from "@/src/utils/main";
 
+import { useCookies } from "react-cookie";
 export default function AboutContent() {
   const { t } = useTranslation(TranslationFiles.COMMON);
+  const [cookies] = useCookies([]);
   const router = useRouter();
   const [formData, setFormData] = useState({
     subject: "", //fullName
@@ -26,12 +28,12 @@ export default function AboutContent() {
   }, []);
 
   async function getAboutInfo() {
-    const response = await fetchAboutSettingData();
+    const response = await fetchAboutSettingData(cookies["token"],cookies["role"]);
     setData(response);
     console.log(data);
   }
   async function sendMessage() {
-    const response = await sendEmailMessage(formData);
+    const response = await sendEmailMessage(formData,cookies["token"],cookies["role"]);
     console.log(response);
     if (response == true) {
       setSendingStatus("success");
@@ -45,6 +47,9 @@ export default function AboutContent() {
     return item ? item.value : "";
     }
   };
+  if (data.length === 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <main>

@@ -11,7 +11,7 @@ const Setting = () => {
   const router = useRouter();
   return (
     <>
-        <Divider orientation="left">{t("setting-pages")}</Divider>
+        <Divider orientation="left">{t("setting-about-page")}</Divider>
 
         <Col span={24} className={"pd"}>
         <FmsButton
@@ -25,7 +25,7 @@ const Setting = () => {
         {t("About-page-setting").toUpperCase()}
       </FmsButton>
       </Col>
-      <Divider orientation="left"></Divider>
+      <Divider orientation="left">{t("setting-profile-page")}</Divider>
       <Col span={12}className={"pd"} >
       <FmsButton
         type="move"
