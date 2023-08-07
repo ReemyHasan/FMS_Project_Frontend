@@ -1,10 +1,32 @@
+import React, { useEffect , useState} from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import FmsButton from "../../../../shared-library/src/buttons/fms-button";
 import { useRouter } from "next/router";
-const UserProfileForm = () => {
+import { getUserInfo } from "@/src/services/user-service";
+import { useCookies } from "react-cookie";
+import MainUtils from "@/src/utils/main";
+const UserProfile = () => {
   const { t } = useTranslation(TranslationFiles.COMMON);
+  const [cookies] = useCookies([]);
+  const [data, setData] = useState([]);
   const router = useRouter();
+  useEffect(() => {
+    async function fetchUserInfo() {
+      try {
+        const response = await getUserInfo(cookies["username"], cookies["token"]);
+        setData(response);
+        console.log(response);
+      } catch (error) {
+        // Handle any errors that might occur during the API call
+      }
+    }
+  
+    fetchUserInfo();
+  }, []);
+  if ( MainUtils.isEmptyValue(data)) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
      <main className="profile-page">
@@ -48,16 +70,16 @@ const UserProfileForm = () => {
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                     <div className="relative">
-                      <img
+                      {/* <img
                         alt="..."
-                        src="/images/Reem.jpg"
+                        src="/images/login-image2.jpg"
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                      />
+                      /> */}
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                    {/* <div className="py-6 px-3 mt-32 sm:mt-0">
-                      <FmsButton
+                    <div className="py-6 px-3 mt-32 sm:mt-0">
+                      {/* <FmsButton
                         className="bg-blueGray-700 active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         type="primary"
                         borderRadius="32"
@@ -66,8 +88,8 @@ const UserProfileForm = () => {
                         }}
                       >
                         {t("edit")}
-                      </FmsButton>
-                    </div> */}
+                      </FmsButton> */}
+                    </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
@@ -80,8 +102,8 @@ const UserProfileForm = () => {
                         </span>
                       </div>
                       <div className="mr-4 p-3 text-center">
-                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          10
+                        <span className="text-xl font-bold block tracking-wide text-blueGray-600">
+                          {data.gender}
                         </span>
                         <span className="text-sm text-blueGray-400">
                           {t("gender")}
@@ -89,7 +111,7 @@ const UserProfileForm = () => {
                       </div>
                       <div className="lg:mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          89
+                        {data.workingDate}
                         </span>
                         <span className="text-sm text-blueGray-400">
                           {t("start-working-date")}
@@ -99,20 +121,23 @@ const UserProfileForm = () => {
                   </div>
                 </div>
                 <div className="text-center mt-12">
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    REEM HASAN
+                  <h3 className="text-4xl font-semibold uppercase leading-normal mb-2 text-blueGray-700 mb-2">
+                  {data.username}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-                    Syria-Damascus
+                    {data.country}
                   </div>
-                  
+                  <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                    <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+                    {data.email}
+                  </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      Site Admin 
+                      {`${data.fname} ${data.lname}`} 
                       </p>
                       <div className="mb-2 text-lightBlue-500 mt-10">
                     <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
@@ -120,7 +145,7 @@ const UserProfileForm = () => {
                   </div>
                   <div className="mb-2 text-lightBlue-500">
                     <i className="fas fa-university mr-2 text-lg "></i>
-                    Site Admin
+                    {data.role}
                   </div>
                     </div>
                   </div>
@@ -133,4 +158,4 @@ const UserProfileForm = () => {
     </>
   );
 };
-export default UserProfileForm;
+export default UserProfile;

@@ -42,26 +42,31 @@ export default function AppHeader() {
   //     // }
   //   };
   // }, []);
-
+  const openKibana = () => {
+    window.open("http://172.29.3.220:5601", "_blank");
+  };
 
   return (
     <Header className="app-header-mini-sidebar">
-      <Row justify={"space-between"} align={"middle"} className={"fullContent"}>
-        <Col span={12}>
-          <Row align={"middle"}>
-            <Col span={2}>
+      <Row justify={"space-between"} className={"fullContent"}>
+        {/* <Col span={12}> */}
+          {/* <Row align={"middle"}> */}
+            <Col span={12}>
              <NavBar />
             </Col>
-          </Row>
-        </Col>
+          {/* </Row> */}
+        {/* </Col> */}
         <Col span={12}>
           <Row gutter={8} align={"middle"} justify={"end"}>
+          <Col className={"app-notifications"}>
+          <a href="http://172.29.3.220:5601" target="_blank" onClick={openKibana}>
+          <img src="/images/elasticsearch.svg" alt="Kibana" style={{ width: "40px", height: "30px" }} title="Archive"/>
+              </a>
+            </Col>
             <Col className={"app-language-switcher"}>
               <AppLanguageSwitcher />
             </Col>
-            {/* <Col className={"app-notifications"}>
-              <AppNotifications data={data} setData={setData} />
-            </Col> */}
+           
             <Col className={"app-user-info"}>
               <UserInfo />
             </Col>

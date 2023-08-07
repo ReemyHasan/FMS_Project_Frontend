@@ -30,13 +30,12 @@ export default function App({ Component, pageProps }: AppProps) {
     setNewVal
   ]);
   
-  const [cookies, setCookie, removeCookie] = useCookies([]);
-  // React.useEffect(() => {
-  //   if (router.pathname === "/") {
-  //     router.push("/dashboard");
-  //   }
-  // }, [router]);
-
+  const [cookies,setCookies,removeCookie] = useCookies([]);
+  
+  // if (cookies["role"] !== "admin" && !router.pathname.startsWith("/user")) {
+  //   router.push("/user/dashboard"); // Modify this URL to your desired access-denied page
+  //   return null; // Prevent rendering the Component for unauthorized users
+  // }
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loader = document.getElementById("globalLoader");
@@ -57,6 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const removeCookieAfterOneHour = async () =>  {
     removeCookie("role", { path: "/", sameSite: true });
     removeCookie("token", { path: "/", sameSite: true });
+    removeCookie("username", { path: "/", sameSite: true });
     window.location.href = "/sign-in";
   };
 

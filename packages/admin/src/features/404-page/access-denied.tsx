@@ -7,7 +7,7 @@ import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import { useCookies } from "react-cookie";
 
-const NotFound = () => {
+const AccessDenied = () => {
   const { t } = useTranslation(TranslationFiles.COMMON);
 
   const [cookies] = useCookies([]);
@@ -24,26 +24,27 @@ const NotFound = () => {
     router.push("/dashboard");
 else{
     router.push("/sign-in");
-  }
+
+}
   };
   return (
     <Row data-testid="not-found-component" className={styles.notFoundPage}>
       <Col span={12} xs={24} md={12} lg={12}>
         <Row className={styles.text}>
-          <span>{t("error-404")}</span>
+          <span>{t("error-403 Forbidden")}</span>
         </Row>
         <Row>
-          <h1 className={styles.notFoundHead}>{t("page-not-found")}</h1>
+          <h1 className={styles.notFoundHead}>{t("access-denied")}</h1>
         </Row>
         <Row>
           <p className={styles.notFoundParaghraph}>
-            {t("sorry-page-not-found")}
+            {t("access-denied")}
             <br />
-            {t("helpful-links")} :
+            {/* {t("helpful-links")} : */}
           </p>
         </Row>
         <Row gutter={10} className={styles.notFoundBtns}>
-          <Col
+          {/* <Col
             className={styles.TakeHome}
             span={8}
             xs={24}
@@ -55,7 +56,7 @@ else{
               <ArrowLeftIcon />
               {t("go-back")}
             </Button>
-          </Col>
+          </Col> */}
           <Col
             className={styles.goBack}
             span={8}
@@ -78,10 +79,10 @@ else{
         xs={24}
         md={12}
         lg={12}
-        className={styles.notFoundView}
+        className={styles.accessDeniedView}
       ></Col>
     </Row>
   );
 };
 
-export default NotFound;
+export default AccessDenied;

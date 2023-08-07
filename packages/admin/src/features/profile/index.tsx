@@ -5,6 +5,7 @@ import FmsButton from "../../../../shared-library/src/buttons/fms-button";
 import { useRouter } from "next/router";
 import { getUserInfo } from "@/src/services/user-service";
 import { useCookies } from "react-cookie";
+import MainUtils from "@/src/utils/main";
 const ProfileForm = () => {
   const { t } = useTranslation(TranslationFiles.COMMON);
   const [cookies] = useCookies([]);
@@ -23,7 +24,7 @@ const ProfileForm = () => {
   
     fetchUserInfo();
   }, []);
-  if (data.length === 0) {
+  if ( MainUtils.isEmptyValue(data)) {
     return <div>Loading...</div>;
   }
   return (

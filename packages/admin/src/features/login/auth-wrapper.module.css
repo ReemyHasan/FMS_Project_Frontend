@@ -1,7 +1,7 @@
 .signIn {
   overflow: hidden;
   background-color: #fff !important;
-  height: 100vh;
+  /* height: 100vh; */
 }
 .signIn .logoImg {
   margin-bottom: 0px;
@@ -22,7 +22,7 @@
 .signIn .logoView {
   width: 860px;
   background-color: #082561;
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
     url("../../../public/images/login-image2.jpg");
   background-size: auto;

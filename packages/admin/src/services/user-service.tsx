@@ -18,7 +18,7 @@ export const login = async (data: any) => {
 export const Register = async (data:any,token:any,role:any) => {
   if(role=="admin"){
     try {
-      const response = await axios.post(AuthURL+"register",data
+      const response = await axios.post(UserURL+"register",data
         ,{
           headers: {
             Authorization: `Bearer ${token}`,

@@ -45,6 +45,9 @@ export default function AppHeader({ toggleCollapse }: AppHeaderProps) {
       // }
     };
   }, []);
+  const openKibana = () => {
+    window.open("http://172.29.3.220:5601", "_blank");
+  };
 
 
   return (
@@ -59,6 +62,11 @@ export default function AppHeader({ toggleCollapse }: AppHeaderProps) {
         </Col>
         <Col span={12}>
           <Row gutter={8} align={"middle"} justify={"end"}>
+          <Col className={"app-notifications"}>
+          <a href="http://172.29.3.220:5601" target="_blank" onClick={openKibana}>
+          <img src="/images/elasticsearch.svg" alt="Kibana" style={{ width: "40px", height: "30px" }} title="Archive"/>
+              </a>
+            </Col>
             <Col className={"app-language-switcher"}>
               <AppLanguageSwitcher />
             </Col>

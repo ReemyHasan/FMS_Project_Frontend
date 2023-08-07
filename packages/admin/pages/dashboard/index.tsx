@@ -5,11 +5,13 @@ import  DashboardComponent from "@/src/features/dashboard";
 import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
+import ProtectedRoute from "../../src/features/protectedRoute";
 export default function Dashboard() {
   const { t } = useTranslation(TranslationFiles.COMMON);
 
   return (
     <Fragment>
+    <ProtectedRoute role="admin">
       <Head>
         <title>{t("dashboard")}</title>
       </Head>
@@ -19,6 +21,8 @@ export default function Dashboard() {
           <DashboardComponent />
         </main>
       </AppLayout>
+      </ProtectedRoute>
+
     </Fragment>
   );
 }

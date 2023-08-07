@@ -47,7 +47,7 @@ export default function AboutContent() {
     return item ? item.value : "";
     }
   };
-  if (data.length === 0) {
+  if ( MainUtils.isEmptyValue(data)) {
     return <div>Loading...</div>;
   }
   return (

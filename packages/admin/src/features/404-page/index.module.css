@@ -16,6 +16,14 @@
   width: 400px;
   height: 100%;
 }
+.accessDeniedView{
+  background-image: url(../../../public/images/access-denied.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 400px;
+  height: 100%;
+}
 .text {
   font-weight: 600;
   font-size: 16px;
