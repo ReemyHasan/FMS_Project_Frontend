@@ -6,6 +6,7 @@ import SchedulingIcon from "@/src/components/assets/custom-ant-icons/sidebar/sch
 import AboutIcon from "@/src/components/assets/custom-ant-icons/sidebar/about-icon";
 import UsersIcon from "@/src/components/assets/custom-ant-icons/sidebar/users-icon";
 import SetupIcon from "@/src/components/assets/custom-ant-icons/sidebar/setup-icon";
+import MlIcon from "@/src/components/assets/custom-ant-icons/sidebar/ml-model-icon";
 
 type RoutesType = {
   key: string;
@@ -43,6 +44,11 @@ export const routes: Array<RoutesType> = [
     key: "users",
     icon: <UsersIcon />,
     label: "users",
+  },
+  {
+    key: "ml-model",
+    icon: <MlIcon />,
+    label: "ml-model",
   },
   {
     key: "setup",

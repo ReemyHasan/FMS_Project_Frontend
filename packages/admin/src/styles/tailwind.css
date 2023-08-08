@@ -1515,7 +1515,29 @@ select {
   --tw-border-opacity: 1;
   border-color: rgba(212, 212, 216, var(--tw-border-opacity));
 }
+.secondary {
+  background-color: #FFFFFF;
+  color: var(--primary-gray-700);
+  border: 1px solid #D0D5DD;
+}
+.traity {
+  background-color: var(--primary-indego-50);
+  color: #000f24;
+  border: 1px solid #D0D5DD;
+}
+.link {
+  background-color: rgb(42, 165, 73);
+  color: var(--primary-indego-50);
+  border: none;
+  box-shadow: none !important;
+}
 
+.move {
+  background-color: #6366f1;
+  color: var(--primary-indego-50);
+  border: none;
+  box-shadow: none !important;
+}
 .focus\:border-gray-500:focus {
   --tw-border-opacity: 1;
   border-color: rgba(113, 113, 122, var(--tw-border-opacity));

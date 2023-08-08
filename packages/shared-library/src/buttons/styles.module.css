@@ -52,24 +52,24 @@
 .traity {
     background-color: var(--primary-indego-50);
     color: var(--primary-blue-700);
-    border: 1px solid var(--secondary-gray-100);
+    border: 1px solid #D0D5DD;
 }
 
 .traity:hover {
     background-color: var(--secondary-gray);
     color: var(--primary-blue-700) !important;
-    border: 1px solid var(--secondary-gray) !important;
+    border: 1px solid #D0D5DD;
 }
 
 .link {
-    background-color: var( --primary-blue-600);
+    background-color: rgb(42, 165, 73);
     color: var(--primary-indego-50);
     border: none;
     box-shadow: none !important;
 }
 
 .link:hover {
-    background-color: var(--primary-blue-700);
+    background-color: rgb(90, 204, 118);
     color: var(--secondary-gray-100) !important;
     border: none !important;
     box-shadow: none !important;
