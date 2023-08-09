@@ -64,6 +64,35 @@ export const getAllUsers = async (token:any, role:any) => {
 }
 };
 
+export const getAdminsCount = async (token:any, role:any) => {
+  if(role=="admin"){
+  try {
+    const response = await axios.get(UserURL + `getAdminCount`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    message.error("Error: " + error);
+  }
+}
+};
+export const getUsersCount = async (token:any, role:any) => {
+  if(role=="admin"){
+  try {
+    const response = await axios.get(UserURL + `getUsersCount`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    message.error("Error: " + error);
+  }
+}
+};
+
 export const deleteUser = async (id: any, token:any,role:any) => {
   if(role=="admin"){
   try {

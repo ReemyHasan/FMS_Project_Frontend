@@ -1,7 +1,7 @@
 import MenuIcon from "@/src/components/assets/custom-ant-icons/menu-icon";
 import React from "react";
 import UsersIcon from "@/src/components/assets/custom-ant-icons/sidebar/users-icon";
-import { FontColorsOutlined } from "@ant-design/icons";
+import { ExclamationOutlined, FontColorsOutlined } from "@ant-design/icons";
 interface Props {
   statSubtitle: string;
   statTitle: string;
@@ -49,7 +49,13 @@ export default function CardStats({
                   <FontColorsOutlined
                     style={{ fontSize: "19px", color: "#000f24" }}
                   />
-                ) : null}
+                ) : statIconName == "traps" ? (
+                  <ExclamationOutlined
+                  style={{ fontSize: "30px", color: "#fff" }}
+                  className={"ExclamationCircleOutlined "}
+                />
+                ): null
+                }
                 {/* <i className={statIconName}></i> */}
               </div>
             </div>

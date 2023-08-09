@@ -8,33 +8,83 @@ import { TranslationFiles } from "@/src/data/core";
 import CardUsers from "./card-users";
 import CardSocialTraffic from './card-socialTraffics'
 import CardStats from './card-stats'
-
+import { getAdminsCount, getUsersCount } from "@/src/services/user-service";
+import {getTrapsCount, getErrorTrapCount} from "@/src/services/traps-service";
+import { useCookies } from "react-cookie";
 const DashboardComponent = () => {
     const { t } = useTranslation(TranslationFiles.COMMON);
-
+    const [cookies] = useCookies([]);
+    const [userCount, setUserCount] = useState();
+    const [adminCount, setAdminCount] = useState([]);
+    const [trapCount, setTrapCount] = useState([]);
+    const [errorTrapCount, setErrorTrapCount] = useState([]);
+    useEffect(() => {
+      async function fetchAdminCount() {
+        try {
+          const response1 = await getAdminsCount(cookies["token"], cookies["role"]);
+          setAdminCount(response1);
+        } catch (error) {
+          console.log("error"+error);
+        }
+      }
+      async function fetchUserCount() {
+        try {
+          const response2 = await getUsersCount(cookies["token"], cookies["role"]);
+          setUserCount(response2)
+        } catch (error) {
+          console.log("error1"+error);
+        }
+      }
+      async function fetchTrapsCount() {
+        try {
+          const response2 = await getTrapsCount(cookies["token"]);
+          setTrapCount(response2)
+        } catch (error) {
+          console.log("error1"+error);
+        }
+      }
+      async function fetchErrorTrapsCount() {
+        try {
+          const response2 = await getErrorTrapCount(cookies["token"]);
+          setErrorTrapCount(response2)
+        } catch (error) {
+          console.log("error1"+error);
+        }
+      }
+      fetchAdminCount();
+      fetchUserCount();
+      fetchTrapsCount();
+      fetchErrorTrapsCount();
+    }, []);
     return (
       <>
       <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="TRAFFIC"
-                  statTitle="350,897"
+                  statSubtitle="Traps"
+                  statTitle={trapCount !== undefined ? trapCount : "..."}
                   statArrow="up"
-                  statPercent="3.48"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
-                  statIconName="far fa-chart-bar"
-                  statIconColor="bg-red-500"
+                  statPercent={`${(errorTrapCount/(trapCount+errorTrapCount))}`}
+                  statPercentColor="text-red-500"
+                  statDescripiron="error Traps"
+                  statIconName="traps"
+                  statIconColor="bg-red-600"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="USERS"
-                  statTitle="2,356"
+                  statTitle={userCount !== undefined ? userCount : "..."}
                   statArrow="down"
-                  statPercent="3.48"
-                  statPercentColor="text-red-500"
-                  statDescripiron="Since last month"
+                  statPercent={`${(userCount/(userCount+adminCount))}`}
+                  statPercentColor={
+                    userCount !== undefined && adminCount !== undefined
+                      ? parseFloat(userCount) / (userCount + adminCount) >= 0.5
+                        ? "text-emerald-500" // Set the color for percent > 0.5
+                        : "text-red-500" // Set the color for percent <= 0.5
+                      : "text-gray-500" // Default color if counts are not available
+                  }
+                  statDescripiron="users in the system"
                   statIconName="group"
                   statIconColor="primary-blue-600"
                 />
@@ -43,11 +93,17 @@ const DashboardComponent = () => {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="ADMINS"
-                  statTitle="924"
+                  statTitle={adminCount !== undefined ? adminCount : "..."}
                   statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-orange-500"
-                  statDescripiron="Since last month"
+                  statPercent={`${(adminCount/(userCount+adminCount))}`}
+                  statPercentColor={
+                    userCount !== undefined && adminCount !== undefined
+                      ? parseFloat(adminCount) / (userCount + adminCount) >= 0.5
+                        ? "text-emerald-500" // Set the color for percent > 0.5
+                        : "text-red-500" // Set the color for percent <= 0.5
+                      : "text-gray-500" // Default color if counts are not available
+                  }
+                  statDescripiron="admins in the system"
                   statIconName="admin"
                   statIconColor="secondary-color-yellow"
                 />

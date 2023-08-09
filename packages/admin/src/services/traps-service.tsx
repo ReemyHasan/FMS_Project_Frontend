@@ -38,3 +38,31 @@ export const getSeverityStatistics = async (token:any) => {
     console.log(error);
   }
 };
+
+export const getTrapsCount = async (token:any) => {
+  try {
+    const response = await axios.get(TrapURL+ "/getTrapCount",{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log("response: "+response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getErrorTrapCount = async (token:any) => {
+  try {
+    const response = await axios.get(TrapURL+ "/getErrorTrapCount",{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log("response: "+response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
