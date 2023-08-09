@@ -19,60 +19,63 @@ export default function ShowTraps() {
   const [data1, setData1] = useState(data);
   const [loading, setLoading] = useState(false);
   const [cookies, setCookie] = useCookies([]);
-  useEffect(() => {
-    if (!cookies["fetch"] ) {
-      const fetchData1 = async () => {
-        try {
-          const response = await fetchData(cookies["token"]);
-          setData(response);
-          setData1(response);
-          setCookie("fetch", 1);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-
-      fetchData1();
-      console.log(data);
-    }
-    console.log(data);
+  useEffect(()=>{
     setData1(data);
+  }, [data])
+  // useEffect(() => {
+  //   if (!cookies["fetch"] ) {
+  //     const fetchData1 = async () => {
+  //       try {
+  //         const response = await fetchData(cookies["token"]);
+  //         setData(response);
+  //         setData1(response);
+  //         setCookie("fetch", 1);
+  //       } catch (error) {
+  //         console.error("Error fetching data:", error);
+  //       }
+  //     };
 
-    const authToken = `Bearer ${cookies["token"]}`;
-    const source = new EventSource(
-      `http://localhost:6647/api/notifications/sub?token=${authToken}`
-    );
+  //     fetchData1();
+  //     console.log(data);
+  //   }
+  //   console.log(data);
+  //   setData1(data);
 
-    source.addEventListener("open", () => {
-      console.log("SSE opened!");
-    });
+  //   const authToken = `Bearer ${cookies["token"]}`;
+  //   const source = new EventSource(
+  //     `http://localhost:6647/api/notifications/sub?token=${authToken}`
+  //   );
 
-    source.addEventListener("message", (e) => {
-      const message = JSON.parse(e.data);
-      console.log(message);
-      if (message.new_val != null) {
-        const newData = message.new_val;
-        setData1((prevData: any) => [...prevData, newData]);
-        setData((prevData: any) => [...prevData, newData]);
-      } else {
-        setData((prevData: any) =>
-          prevData.filter((item: any) => item.id !== message.old_val.id)
-        );
-        setData1((prevData: any) =>
-          prevData.filter((item: any) => item.id !== message.old_val.id)
-        );
-      }
-    });
+  //   source.addEventListener("open", () => {
+  //     console.log("SSE opened!");
+  //   });
 
-    source.addEventListener("error", (e) => {
-      console.error("Error: ", e);
-    });
+  //   source.addEventListener("message", (e) => {
+  //     const message = JSON.parse(e.data);
+  //     console.log(message);
+  //     if (message.new_val != null) {
+  //       const newData = message.new_val;
+  //       setData1((prevData: any) => [...prevData, newData]);
+  //       setData((prevData: any) => [...prevData, newData]);
+  //     } else {
+  //       setData((prevData: any) =>
+  //         prevData.filter((item: any) => item.id !== message.old_val.id)
+  //       );
+  //       setData1((prevData: any) =>
+  //         prevData.filter((item: any) => item.id !== message.old_val.id)
+  //       );
+  //     }
+  //   });
 
-    return () => {
-      source.close();
-      console.log("SSE closed ");
-    };
-  }, []);
+  //   source.addEventListener("error", (e) => {
+  //     console.error("Error: ", e);
+  //   });
+
+  //   return () => {
+  //     source.close();
+  //     console.log("SSE closed ");
+  //   };
+  // }, []);
   return (
     <div>
       <Spin spinning={loading}>
