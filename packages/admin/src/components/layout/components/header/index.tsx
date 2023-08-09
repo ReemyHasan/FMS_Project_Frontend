@@ -1,50 +1,49 @@
 import React, { useEffect, useContext,useRef } from "react";
 import { Layout, Row, Col } from "antd";
 import AppLanguageSwitcher from "./app-language-switcher";
-import AppNotifications from "./app-notifications";
 import UserInfo from "./user-info";
 import MenuIcon from "@/src/components/assets/custom-ant-icons/menu-icon";
-import DataContext from "../../../../context/trap-context";
+// import DataContext from "../../../../context/trap-context";
 const { Header } = Layout;
 
 type AppHeaderProps = {
   toggleCollapse: Function;
 };
 export default function AppHeader({ toggleCollapse }: AppHeaderProps) {
-  const { data, setData, websocket, setNewVal } = useContext(DataContext);
-  useEffect(() => {
-    if (!websocket) {
-      return;
-    }
-    websocket.onmessage = function (event:any) {
-      const message = JSON.parse(event.data);
-      console.log(message);
-      if (message.new_val != null) {
-        const newData = message.new_val;
-        const transformedData = {
-          flag:'0',
-          id: newData.id,
-          timestamp: newData.timestamp,
-          agentAddress: newData.agentAddress,
-          severity: newData.severity,
-          specificTrap: newData.specificTrap,
-          genericTrap: newData.genericTrap,
-          variableBindings: newData.variableBindings,
-        };
-        setNewVal(transformedData);
-        setData((prevData: any) => [...prevData, newData]);
-      }
-      else{
-        setNewVal({id:message.old_val.id,flag:-1,});
-      }
-    };
+  // const { data, setData, websocket, setNewVal } = useContext(DataContext);
+  // useEffect(() => {
+  //   if (!websocket) {
+  //     return;
+  //   }
+  //   websocket.onmessage = function (event:any) {
+  //     const message = JSON.parse(event.data);
+  //     console.log(message);
+  //     if (message.new_val != null) {
+  //       const newData = message.new_val;
+  //       const transformedData = {
+  //         flag:'0',
+  //         id: newData.id,
+  //         timestamp: newData.timestamp,
+  //         agentAddress: newData.agentAddress,
+  //         severity: newData.severity,
+  //         specificTrap: newData.specificTrap,
+  //         genericTrap: newData.genericTrap,
+  //         variableBindings: newData.variableBindings,
+  //       };
+  //       setNewVal(transformedData);
+  //       setData((prevData: any) => [...prevData, newData]);
+  //     }
+  //     else{
+  //       setNewVal({id:message.old_val.id,flag:-1,});
+  //     }
+  //   };
 
-    return () => {
-      // if (websocket) {
-      //   websocket.close();
-      // }
-    };
-  }, []);
+  //   return () => {
+  //     // if (websocket) {
+  //     //   websocket.close();
+  //     // }
+  //   };
+  // }, []);
   const openKibana = () => {
     window.open("http://172.29.3.220:5601", "_blank");
   };
@@ -71,7 +70,7 @@ export default function AppHeader({ toggleCollapse }: AppHeaderProps) {
               <AppLanguageSwitcher />
             </Col>
             <Col className={"app-notifications"}>
-              <AppNotifications data={data} setData={setData} />
+              {/* <AppNotifications data={data} setData={setData} /> */}
             </Col>
             <Col className={"app-user-info"}>
               <UserInfo />

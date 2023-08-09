@@ -1,11 +1,8 @@
 import * as React from "react";
-import { useEffect } from "react"; // Import useEffect
-import AppLayout from "@/src/components/layout";
 import { Fragment } from "react";
 import Head from "next/head";
 import { TranslationFiles } from "@/src/data/core";
 import useTranslation from "next-translate/useTranslation";
-import DashboardComponent from "@/src/features/dashboard";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 import MainUtils from "@/src/utils/main";
@@ -25,14 +22,12 @@ export default function Home() {
   return (
     <Fragment>
       <Head>
-        <title>{t("dashboard")}</title>
+        <title>{t("fms")}</title>
       </Head>
-      <AppLayout>
         <main className={`app-main-container`}>
           <div className={"page-header"}>{t("")}</div>
-          {t("Waiting")}
+          {t("waiting")}
         </main>
-      </AppLayout>
     </Fragment>
   );
 }

@@ -9,19 +9,20 @@ type AppLayoutProps = {
 };
 const AppLayout = ({ children }: AppLayoutProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+
   return (
     <div className={"app-layout"}>
-      <Layout className={"app-layout-mini-sidebar"}>
-        <AppSidebar isCollapsed={isCollapsed} />
-        <Layout className="app-layout-mini-sidebar-main">
-          <AppHeader toggleCollapse={toggleCollapse} />
-          <AppContentView>{children}</AppContentView>
+        <Layout className={"app-layout-mini-sidebar"}>
+          <AppSidebar isCollapsed={isCollapsed} />
+          <Layout className="app-layout-mini-sidebar-main">
+            <AppHeader toggleCollapse={toggleCollapse} />
+            <AppContentView>{children}</AppContentView>
+          </Layout>
         </Layout>
-      </Layout>
     </div>
   );
 };

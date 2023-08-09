@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import Head from "next/head";
 import AppLayout from "@/src/components/layout";
 import { Fragment } from "react";
@@ -8,7 +7,6 @@ import { TranslationFiles } from "@/src/data/core";
 import ShowTraps from "@/src/features/show-traps";
 export default function Traps() {
   const { t } = useTranslation(TranslationFiles.COMMON);
- 
   return (
     <Fragment>
       <Head>

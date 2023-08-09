@@ -24,14 +24,14 @@ const AppNotifications = ({ data, setData }: AppNotificationsProps) => {
       </Menu.Item>
       <List
         className="notify-list scrollRow"
-        dataSource={data.slice(-3)}
-        renderItem={(item: any) => (
-          <List.Item>
-            <div className={`severity-${item.severity}`}>{item.severity}</div>
-            <div>{item.agentAddress}</div>
-            {/* Add more properties as required */}
-          </List.Item>
-        )}
+        // dataSource={data.slice(-3)}
+        // renderItem={(item: any) => (
+        //   <List.Item>
+        //     <div className={`severity-${item.severity}`}>{item.severity}</div>
+        //     <div>{item.agentAddress}</div>
+        //     {/* Add more properties as required */}
+        //   </List.Item>
+        // )}
       />
         <Row gutter={24}>
           {" "}

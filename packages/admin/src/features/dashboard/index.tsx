@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useContext, useState} from "react";
 import { Card, Col } from "antd";
 import styles from "./index.module.css";
 import CardLineChart from "./card-lineChart";
@@ -8,10 +8,10 @@ import { TranslationFiles } from "@/src/data/core";
 import CardUsers from "./card-users";
 import CardSocialTraffic from './card-socialTraffics'
 import CardStats from './card-stats'
-import UsersIcon from '../../components/assets/custom-ant-icons/sidebar/users-icon'
-import { UsergroupAddOutlined } from "@ant-design/icons";
+
 const DashboardComponent = () => {
     const { t } = useTranslation(TranslationFiles.COMMON);
+
     return (
       <>
       <div className="flex flex-wrap">

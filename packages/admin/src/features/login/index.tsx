@@ -45,6 +45,8 @@ const Login = () => {
   const removeCookieAfterOneHour = async () =>  {
     removeCookie("role", { });
     removeCookie("token", { });
+    removeCookie("username", { });
+    removeCookie("fetch", { });
     window.location.href = "/sign-in";
   };
 
@@ -62,14 +64,14 @@ const Login = () => {
       <AuthWrapper>
         <Row justify={"center"} className={styles.logoImg}>
           <Image
-            src={"/images/logo.png"}
+            src={"/images/elasticsearch.svg"}
             alt="sign-in-logo"
-            height={200}
-            width={230}
+            height={160}
+            width={200}
           />
         </Row>
         <Row className={styles.signInText}>
-          <h2>{t("welcome-back")}</h2>
+          {/* <h2>{t("welcome-back")}</h2> */}
           <p>{t("welcome-back-enter-credentials")}</p>
         </Row>
         <Row>
