@@ -15,6 +15,8 @@ interface fmsTableProps {
   rowSelection:any;
   pageSizeOptions:Array<string>;
   defaultPageSize:any;
+  className?: string;
+  scroll?: any;
 }
 const FmsTable: FunctionComponent<fmsTableProps> = ({
   title,
@@ -26,8 +28,10 @@ const FmsTable: FunctionComponent<fmsTableProps> = ({
   rowSelection,
   pageSizeOptions,
   defaultPageSize,
+  className,
+  scroll
 }) => {
- 
+  const combinedClassName = `fms-table ${className || ""}`;
   return (
     <div data-testid="fms-table">
       <div className={classes.tableTitleContainer}>
@@ -46,7 +50,7 @@ const FmsTable: FunctionComponent<fmsTableProps> = ({
         dataSource={data}
         rowSelection = {rowSelection}
         bordered
-        scroll={{ x: 1000 }}
+        scroll={{ x: scroll }}
         pagination={{ position: ['bottomLeft'], 
         pageSizeOptions: pageSizeOptions,
         showSizeChanger: true, locale: { items_per_page: "" },

@@ -2,7 +2,7 @@ import axios from "axios";
 import {TrapURL} from "../data/constant/app-constant";
 export const fetchData = async (token:any) => {
   try {
-    const response = await axios.get(TrapURL,{
+    const response = await axios.get(TrapURL+"/data",{
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -21,6 +21,19 @@ export const fetchData = async (token:any) => {
     } else {
       alert("Error");
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getSeverityStatistics = async (token:any) => {
+  try {
+    const response = await axios.get(TrapURL+ "/severity-statistics",{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log("response: "+response);
+    return response.data;
   } catch (error) {
     console.log(error);
   }

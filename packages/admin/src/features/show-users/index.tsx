@@ -18,7 +18,6 @@ const [modalProps, setModalProps] = useState({
 const [data, setData] = useState([]);
 const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
 const [cookies] = useCookies([]);
-  // Fetch data when the component mounts using useEffect
   useEffect(() => {
     const fetchData = async () => {
       try {
