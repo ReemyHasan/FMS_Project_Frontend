@@ -9,7 +9,7 @@ import CardUsers from "./card-users";
 import CardSocialTraffic from './card-socialTraffics'
 import CardStats from './card-stats'
 import { getAdminsCount, getUsersCount } from "@/src/services/user-service";
-import {getTrapsCount, getErrorTrapCount} from "@/src/services/traps-service";
+import {getTrapsCount, getErrorTrapCount, getWarningTrapCount, getInfoTrapCount} from "@/src/services/traps-service";
 import { useCookies } from "react-cookie";
 const DashboardComponent = () => {
     const { t } = useTranslation(TranslationFiles.COMMON);
@@ -18,13 +18,15 @@ const DashboardComponent = () => {
     const [adminCount, setAdminCount] = useState([]);
     const [trapCount, setTrapCount] = useState([]);
     const [errorTrapCount, setErrorTrapCount] = useState([]);
+    const [warnTrapCount, setWarnTrapCount] = useState([]);
+    const [infoTrapCount, setInfoTrapCount] = useState([]);
     useEffect(() => {
       async function fetchAdminCount() {
         try {
           const response1 = await getAdminsCount(cookies["token"], cookies["role"]);
           setAdminCount(response1);
         } catch (error) {
-          console.log("error"+error);
+          console.log("error:"+error);
         }
       }
       async function fetchUserCount() {
@@ -32,7 +34,7 @@ const DashboardComponent = () => {
           const response2 = await getUsersCount(cookies["token"], cookies["role"]);
           setUserCount(response2)
         } catch (error) {
-          console.log("error1"+error);
+          console.log("error:"+error);
         }
       }
       async function fetchTrapsCount() {
@@ -40,7 +42,7 @@ const DashboardComponent = () => {
           const response2 = await getTrapsCount(cookies["token"]);
           setTrapCount(response2)
         } catch (error) {
-          console.log("error1"+error);
+          console.log("error:"+error);
         }
       }
       async function fetchErrorTrapsCount() {
@@ -48,13 +50,32 @@ const DashboardComponent = () => {
           const response2 = await getErrorTrapCount(cookies["token"]);
           setErrorTrapCount(response2)
         } catch (error) {
-          console.log("error1"+error);
+          console.log("error:"+error);
         }
       }
+      async function fetchWarnignTrapsCount() {
+        try {
+          const response2 = await getWarningTrapCount(cookies["token"]);
+          setWarnTrapCount(response2)
+        } catch (error) {
+          console.log("error:"+error);
+        }
+      }
+      async function fetchInfoTrapsCount() {
+        try {
+          const response2 = await getInfoTrapCount(cookies["token"]);
+          setInfoTrapCount(response2)
+        } catch (error) {
+          console.log("error:"+error);
+        }
+      }
+
       fetchAdminCount();
       fetchUserCount();
       fetchTrapsCount();
       fetchErrorTrapsCount();
+      fetchWarnignTrapsCount();
+      fetchInfoTrapsCount();
     }, []);
     return (
       <>
@@ -130,12 +151,10 @@ const DashboardComponent = () => {
             </div>
           </div>
           <div className="flex flex-wrap mt-4">
-            <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+            {/* <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4"> */}
               <CardUsers />
-            </div>
-            <div className="w-full xl:w-4/12 px-4">
-              <CardSocialTraffic />
-            </div>
+            {/* </div> */}
+           
           </div>
         </>
         );

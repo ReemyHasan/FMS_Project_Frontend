@@ -66,3 +66,31 @@ export const getErrorTrapCount = async (token:any) => {
     console.log(error);
   }
 };
+
+export const getWarningTrapCount = async (token:any) => {
+  try {
+    const response = await axios.get(TrapURL+ "/getWarningTrapCount",{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log("response: "+response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getInfoTrapCount = async (token:any) => {
+  try {
+    const response = await axios.get(TrapURL+ "/getInfoTrapCount",{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // console.log("response: "+response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

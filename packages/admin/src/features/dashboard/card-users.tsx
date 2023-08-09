@@ -10,6 +10,7 @@ export default function CardUsers() {
   const Columns = [
     { title: 'username', dataIndex: 'username', key: 'username' },
     { title: 'role', dataIndex: 'role', key: 'role' },
+    { title: 'email', dataIndex: 'email', key: 'email' },
   ];
   const { t } = useTranslation(TranslationFiles.COMMON);
   const router = useRouter();
