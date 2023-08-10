@@ -19,7 +19,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const [cookies, setCookie, removeCookie] = useCookies([]);
   useEffect(() => {
     const handleBeforeUnload = () => {
-      removeCookie("fetch", { path: "/", sameSite: true });
+      removeCookie("fetch");
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);

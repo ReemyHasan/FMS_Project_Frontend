@@ -90,7 +90,7 @@ export default function MLContent() {
               <div className="lg:pt-12 pt-6 w-full  px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    <p className="mt-2 mb-4 text-blueGray-500">
+                    {/* <p className="mt-2 mb-4 text-blueGray-500"> */}
                       <Upload
                         className="font-bold hover:shadow-md m-2 mt-3 shadow text-xs rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         customRequest={() => {}}
@@ -110,7 +110,7 @@ export default function MLContent() {
                       >
                         {t("failures-feedback")}
                       </button>
-                    </p>
+                    {/* </p> */}
                   </div>
                 </div>
               </div>
@@ -233,12 +233,12 @@ export default function MLContent() {
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-                <div className="md:pr-12">
+                {/* <div className="md:pr-12"> */}
                   <h3 className="text-3xl font-semibold">lllllllllllllll</h3>
                   <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                     llllllllll
                   </p>
-                </div>
+                {/* </div> */}
               </div>
             </div>
           </div>
