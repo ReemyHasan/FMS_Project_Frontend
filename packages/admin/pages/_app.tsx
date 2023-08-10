@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
     removeCookie("role", { path: "/", sameSite: true });
     removeCookie("token", { path: "/", sameSite: true });
     removeCookie("username", { path: "/", sameSite: true });
-    removeCookie("fetch", { path: "/", sameSite: true });
+    removeCookie("fetch", { path: "/", sameSite: true },{ path: "/ar", sameSite: true });
     window.location.href = "/sign-in";
   };
 

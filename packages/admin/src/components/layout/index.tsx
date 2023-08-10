@@ -6,6 +6,7 @@ import AppHeader from "./components/header";
 import { useCookies } from "react-cookie";
 import DataContext from "../../context/trap-context";
 import { fetchData } from "../../services/traps-service";
+import { ApiGatewayURL } from "@/src/data/constant/app-constant";
 type AppLayoutProps = {
   children: ReactNode;
 };
@@ -18,7 +19,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const [cookies, setCookie, removeCookie] = useCookies([]);
   useEffect(() => {
     const handleBeforeUnload = () => {
-      removeCookie("fetch", { path: "/", sameSite: true }); // Delete the 'fetch' cookie
+      removeCookie("fetch", { path: "/", sameSite: true });
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -35,13 +36,11 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       };
 
       fetchData1();
-      // console.log(data);
     }
-    // console.log(data);
 
-    const authToken = `Bearer ${cookies["token"]}`;
+    const authToken = `${cookies["token"]}`;
     const source = new EventSource(
-      `http://localhost:6647/api/notifications/sub?token=${authToken}`
+      `${ApiGatewayURL}/api/notifications/sub?token=${authToken}`
     );
 
     source.addEventListener("open", () => {
@@ -53,15 +52,11 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       console.log(message);
       if (message.new_val != null) {
         const newData = message.new_val;
-        // setData1((prevData: any) => [...prevData, newData]);
         setData((prevData: any) => [...prevData, newData]);
       } else {
         setData((prevData: any) =>
           prevData.filter((item: any) => item.id !== message.old_val.id)
         );
-        // setData1((prevData: any) =>
-        //   prevData.filter((item: any) => item.id !== message.old_val.id)
-        // );
       }
     });
 

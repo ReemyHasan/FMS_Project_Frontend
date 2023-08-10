@@ -7,12 +7,12 @@ import { useRouter } from "next/router";
 import { getAllUsers, deleteUser } from "@/src/services/user-service";
 import { useCookies } from "react-cookie";
 export default function CardUsers() {
-  const Columns = [
-    { title: 'username', dataIndex: 'username', key: 'username' },
-    { title: 'role', dataIndex: 'role', key: 'role' },
-    { title: 'email', dataIndex: 'email', key: 'email' },
-  ];
   const { t } = useTranslation(TranslationFiles.COMMON);
+  const Columns = [
+    { title: t("username"), dataIndex: 'username', key: 'username' },
+    { title: t("role"), dataIndex: 'role', key: 'role' },
+    { title: t("email"), dataIndex: 'email', key: 'email' },
+  ];
   const router = useRouter();
   const [data, setData] = useState([]);
 const [cookies] = useCookies([]);
@@ -41,11 +41,11 @@ const [cookies] = useCookies([]);
                   router.push("/users");
                 }}
               >
-                {"See all".toUpperCase()}
+                {t("see-all").toUpperCase()}
               </FmsButton>
             </div>
           <FmsTable
-            title={"users"}
+            title={t("users")}
             columns={Columns}
             data={data}
             pageSizeOptions={["3", "5", "7"]}

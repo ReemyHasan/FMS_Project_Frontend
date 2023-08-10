@@ -1,7 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
@@ -91,39 +91,19 @@ export default function MLContent() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
                     <p className="mt-2 mb-4 text-blueGray-500">
-                      {/* <label htmlFor="fileInput">
-                      <input
-                        id="fileInput"
-                        type="file"
-                        // accept=".csv"
-                        onChange={handleFileChange}
-                        style={{ display: "inline-block" }}
-                      />
-                      <button
-                        className="move active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        //   type="move"
-                        size="large"
-                        borderRadius="32"
-                        onClick={uploadFile}
-                      >
-                        {t("failures-feedback")}
-                      </button>
-                      </label> */}
                       <Upload
                         className="font-bold hover:shadow-md m-2 mt-3 shadow text-xs rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         customRequest={() => {}}
                         beforeUpload={() => false}
                         showUploadList={false}
                         onChange={handleFileChange}
-                        // style={{ display: "block" }}
                       >
                         <Button icon={<UploadOutlined />}>
-                          {t("Select File")}
+                          {t("select-file")}
                         </Button>
                       </Upload>
                       <button
                         className="move active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        //   type="move"
                         size="large"
                         borderRadius="32"
                         onClick={uploadFile}
@@ -140,7 +120,6 @@ export default function MLContent() {
                     <p className="mt-2 mb-4 text-blueGray-500">
                       <button
                         className="traity active:bg-blueGray-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        //   type="move"
                         size="large"
                         borderRadius="32"
                         onClick={uploadFile}
@@ -158,7 +137,6 @@ export default function MLContent() {
                     <p className="mt-2 mb-4 text-blueGray-500">
                       <button
                         className="secondary active:bg-blueGray-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        //   type="move"
                         size="large"
                         borderRadius="32"
                         onClick={uploadFile}
@@ -176,7 +154,6 @@ export default function MLContent() {
                     <p className="mt-2 mb-4 text-blueGray-500">
                       <button
                         className="link active:bg-blueGray-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        //   type="move"
                         size="large"
                         borderRadius="32"
                         onClick={() => setModalProps({ isOpen: true})}
@@ -217,10 +194,6 @@ export default function MLContent() {
                       viewBox="0 0 583 95"
                       className="absolute left-0 w-full block h-95-px -top-94-px"
                     >
-                      {/* <polygon
-                        points="-30,95 583,95 583,65"
-                        className="text-blueGray-700 fill-current"
-                      ></polygon> */}
                     </svg>
                   </blockquote>
                 </div>

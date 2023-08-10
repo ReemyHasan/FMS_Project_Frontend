@@ -22,7 +22,7 @@ const Setting = () => {
           router.push("/setup/setting-about-content");
         }}
       >
-        {t("About-page-setting").toUpperCase()}
+        {t("about-page-setting").toUpperCase()}
       </FmsButton>
       </Col>
       <Divider orientation="left">{t("setting-profile-page")}</Divider>

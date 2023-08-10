@@ -79,19 +79,19 @@ const DashboardComponent = () => {
       <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Traps"
+                  statSubtitle={t("traps")}
                   statTitle={trapCount !== undefined ? trapCount : "..."}
                   statArrow="up"
                   statPercent={`${(errorTrapCount/(trapCount+errorTrapCount))}`}
                   statPercentColor="text-red-500"
-                  statDescripiron="error Traps"
+                  statDescripiron={t("error-traps")}
                   statIconName="traps"
                   statIconColor="bg-red-600"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="USERS"
+                  statSubtitle={t("users")}
                   statTitle={userCount !== undefined ? userCount : "..."}
                   statArrow="down"
                   statPercent={`${(userCount/(userCount+adminCount))}`}
@@ -102,7 +102,7 @@ const DashboardComponent = () => {
                         : "text-red-500" // Set the color for percent <= 0.5
                       : "text-gray-500" // Default color if counts are not available
                   }
-                  statDescripiron="users in the system"
+                  statDescripiron={t("users-in-the-system")}
                   statIconName="group"
                   statIconColor="primary-blue-600"
                 />
@@ -110,7 +110,7 @@ const DashboardComponent = () => {
               
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="ADMINS"
+                  statSubtitle={t("admins")}
                   statTitle={adminCount !== undefined ? adminCount : "..."}
                   statArrow="down"
                   statPercent={`${(adminCount/(userCount+adminCount))}`}
@@ -121,19 +121,19 @@ const DashboardComponent = () => {
                         : "text-red-500" // Set the color for percent <= 0.5
                       : "text-gray-500" // Default color if counts are not available
                   }
-                  statDescripiron="admins in the system"
+                  statDescripiron={t("admins-in-the-system")}
                   statIconName="admin"
                   statIconColor="secondary-color-yellow"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="MODEL PERFORMANCE"
+                  statSubtitle={t("model-performance")}
                   statTitle="49,65%"
                   statArrow="up"
-                  statPercent="12"
+                  statPercent=""
                   statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
+                  statDescripiron=""
                   statIconName="Model"
                   statIconColor="bg-lightBlue-500"
                 />

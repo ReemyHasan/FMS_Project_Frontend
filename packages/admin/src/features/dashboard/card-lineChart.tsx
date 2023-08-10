@@ -2,8 +2,11 @@ import React, { Component, useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 import { useCookies } from "react-cookie";
 import { getSeverityStatistics } from "../../services/traps-service";
-
+import useTranslation from "next-translate/useTranslation";
+import { TranslationFiles } from "@/src/data/core";
 export default function CardLineChart() {
+  const { t } = useTranslation(TranslationFiles.COMMON);
+
   const [data, setData] = useState([]);
   const [cookies] = useCookies([]);
 
@@ -34,7 +37,7 @@ export default function CardLineChart() {
       const labels = Object.keys(data).sort(); // Use the sorted timestamps as labels
 
       const datasets = Object.keys(severityColors).map((severity) => ({
-        label: severity,
+        label: t(severity.toLocaleLowerCase()),
         backgroundColor: severityColors[severity],
         borderColor: severityColors[severity],
         data: labels.map((timestamp) => data[timestamp][severity] || 0),
@@ -130,10 +133,10 @@ export default function CardLineChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-                Overview
+                {t("overview")}
               </h6>
               <h2 className="text-white text-xl font-semibold">
-                Severity traps Charts
+                {t("severity")}
               </h2>
             </div>
           </div>

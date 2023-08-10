@@ -114,7 +114,7 @@ const ProfileForm = () => {
                         {data.workingDate}
                         </span>
                         <span className="text-sm text-blueGray-400">
-                          {t("start-working-date")}
+                          {t("working-date")}
                         </span>
                       </div>
                     </div>

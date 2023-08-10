@@ -77,13 +77,13 @@ const Login = () => {
         <Row>
           <Col span={24}>
             <Form name="basic" layout="vertical" onFinish={onFinishSend}>
-              <Form.Item label={t("username.label")} className={styles.formInput}>
+              <Form.Item label={t("username")} className={styles.formInput}>
                 <Form.Item
                   name="username"
                   rules={[
                     {
                       required: true,
-                      message: t("email.required-message"),
+                      message: t("required-message"),
                     },
                     {
                       type:"string",
@@ -91,7 +91,7 @@ const Login = () => {
                   ]}
                 >
                   <Input
-                    placeholder={t("username.placeholder")}
+                    placeholder={t("placeholder")}
                     data-testid="email"
                   />
                 </Form.Item>
@@ -113,7 +113,7 @@ const Login = () => {
                 </Form.Item>
               </Form.Item>
               <div>
-                <Form.Item className={styles.rememberMe}>
+                {/* <Form.Item className={styles.rememberMe}>
                   <Form.Item name="remember" valuePropName="checked" noStyle>
                     <Checkbox>{t("remember-me")}</Checkbox>
                   </Form.Item>
@@ -121,7 +121,7 @@ const Login = () => {
                   <a className={styles.loginFormForgot} href="">
                     {t("forget-password")}
                   </a>
-                </Form.Item>
+                </Form.Item> */}
               </div>
               <Button
                 data-testid="submit-button"

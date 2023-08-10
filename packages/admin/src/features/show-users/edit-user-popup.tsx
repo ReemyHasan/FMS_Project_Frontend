@@ -31,10 +31,9 @@ export default function EditUserPopup({ modalProps, setModalProps }: Props) {
     setModalProps(false, null);
   };
   useEffect(() => {
-    console.log(MainUtils.cloneObject( modalProps.data));
+    console.log(MainUtils.cloneObject(modalProps.data));
     setIsModalOpen(modalProps.isOpen);
     setUserData(modalProps.data);
-
   }, [modalProps]);
 
   const handleUpdate = async () => {
@@ -54,72 +53,57 @@ export default function EditUserPopup({ modalProps, setModalProps }: Props) {
 
   return (
     <Modal
-    title="edit-user"
-    visible={isModalOpen}
-    onOk={handleUpdate}
-    onCancel={handleCancel}
-  >
-    <Row gutter={16} justify="center">
-      <Col span={16}>
-        <Form initialValues={userData} onFinish={handleUpdate}>
-          <Form.Item label="first-name"  name="fname">
-            <Input
-              onChange={(e) =>
-                setUserData({ ...userData, fname: e.target.value })
-              }
-            />
-          </Form.Item>
-          <Form.Item label="last-name"  name="lname">
-            <Input
-              onChange={(e) =>
-                setUserData({ ...userData, lname: e.target.value })
-              }
-            />
-          </Form.Item>
-          <Form.Item label="username"
-           name="username"
-           >
-            <Input
-              onChange={(e) =>
-                setUserData({ ...userData, username: e.target.value })
-              }
-            />
-          </Form.Item>
-          <Form.Item label="email"
-           name="email"
-           rules={[
-             { type: 'email'  },
-           ]}
-           >
-            <Input
-              
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-            />
-          </Form.Item>
-          <Form.Item
-                label={t("password")}
-                name="password"
-              >
-                <Input.Password  
-              onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
-              } />
-              </Form.Item>
-              <Form.Item label={t("gender-label")} name="gender" >
-              <Select onChange={(e) =>
-                setUserData({ ...userData, gender: e })
-              }>
+      title="edit-user"
+      visible={isModalOpen}
+      onOk={handleUpdate}
+      onCancel={handleCancel}
+    >
+      <Row gutter={16} justify="center">
+        <Col span={16}>
+          <Form initialValues={userData} onFinish={handleUpdate}>
+            <Form.Item label="first-name" name="fname">
+              <Input
+                onChange={(e) =>
+                  setUserData({ ...userData, fname: e.target.value })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="last-name" name="lname">
+              <Input
+                onChange={(e) =>
+                  setUserData({ ...userData, lname: e.target.value })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="username" name="username">
+              <Input
+                onChange={(e) =>
+                  setUserData({ ...userData, username: e.target.value })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="email" name="email" rules={[{ type: "email" }]}>
+              <Input
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+              />
+            </Form.Item>
+            <Form.Item label={t("password")} name="password">
+              <Input.Password
+                onChange={(e) =>
+                  setUserData({ ...userData, password: e.target.value })
+                }
+              />
+            </Form.Item>
+            <Form.Item label={t("gender-label")} name="gender">
+              <Select onChange={(e) => setUserData({ ...userData, gender: e })}>
                 <Select.Option value="male">{t("male")}</Select.Option>
                 <Select.Option value="female">{t("female")}</Select.Option>
               </Select>
             </Form.Item>
             <Form.Item label={t("role.label")} name="role">
-              <Select 
-              onChange={(e) =>
-                setUserData({ ...userData, role: e })
-              }>
+              <Select onChange={(e) => setUserData({ ...userData, role: e })}>
                 <Select.Option value="user">{t("user")}</Select.Option>
                 <Select.Option value="admin">{t("admin")}</Select.Option>
               </Select>
@@ -127,17 +111,18 @@ export default function EditUserPopup({ modalProps, setModalProps }: Props) {
             {/* <Form.Item label={t("workingDate.label")} name="workingDate" >
               <DatePicker />
             </Form.Item> */}
-            <Form.Item label={t("country.label")} name="country" >
-              <Select onChange={(e) =>
-                setUserData({ ...userData, country: e })
-              }>
+            <Form.Item label={t("country.label")} name="country">
+              <Select
+                onChange={(e) => setUserData({ ...userData, country: e })}
+              >
                 <Select.Option value="syria">{t("syria")}</Select.Option>
-                <Select.Option value="others">{t("others")}</Select.Option>
+                <Select.Option value="USA">{t("USA")}</Select.Option>
+                <Select.Option value="Lebanon">{t("Lebanon")}</Select.Option>{" "}
               </Select>
             </Form.Item>
-        </Form>
-      </Col>
-    </Row>
-  </Modal>
+          </Form>
+        </Col>
+      </Row>
+    </Modal>
   );
 }

@@ -21,7 +21,7 @@ const AuthContextProvider = (props: { children: React.ReactNode }) => {
     try {
       removeCookie("role", "", { path: "/", expires: new Date(0) });
       removeCookie("token", "", { path: "/", expires: new Date(0) });
-      removeCookie("fetch", "", { path: "/", expires: new Date(0) });
+      removeCookie("fetch", "", { path: "/", expires: new Date(0) }, { path: "/ar", expires: new Date(0) });
       removeCookie("username", "", { path: "/", expires: new Date(0) });
       // removeCookie("role","");
       // removeCookie("token","");

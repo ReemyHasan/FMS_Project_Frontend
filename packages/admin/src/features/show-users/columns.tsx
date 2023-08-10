@@ -1,11 +1,14 @@
 import {Col, DatePicker, Input, Row } from "antd";
 import FmsButton from "../../../../shared-library/src/buttons/fms-button";
+import useTranslation from "next-translate/useTranslation";
+import { TranslationFiles } from "@/src/data/core";
 export function getColumns(setModalProps:any) { 
-  
+  const { t } = useTranslation(TranslationFiles.COMMON);
+
   const { RangePicker } = DatePicker;
   return [
   {
-    title: "first-name",
+    title: ("fname"),
     dataIndex: "fname",
     key: "fname",
     resizable: true, 
@@ -14,7 +17,7 @@ export function getColumns(setModalProps:any) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={selectedKeys[0]}
           onChange={(e:any) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={confirm}
@@ -28,7 +31,7 @@ export function getColumns(setModalProps:any) {
           size="small"
           borderRadius={10}
         >
-          {"Search"}
+          {t("search")}
         </FmsButton>
         </Col>
         </Row>
@@ -37,7 +40,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.fname.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "last-name",
+    title: t("lname"),
     dataIndex: "lname",
     key: "lname",
     resizable: true, 
@@ -46,7 +49,7 @@ export function getColumns(setModalProps:any) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={selectedKeys[0]}
           onChange={(e:any) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={confirm}
@@ -60,7 +63,7 @@ export function getColumns(setModalProps:any) {
           size="small"
           borderRadius={10}
         >
-          {"Search"}
+          {t("search")}
         </FmsButton>
         </Col>
         </Row>
@@ -69,7 +72,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.lname.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "username",
+    title: t("username"),
     dataIndex: "username",
     key: "username",
     resizable: true, 
@@ -78,7 +81,7 @@ export function getColumns(setModalProps:any) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={selectedKeys[0]}
           onChange={(e:any) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={confirm}
@@ -92,7 +95,7 @@ export function getColumns(setModalProps:any) {
           size="small"
           borderRadius={10}
         >
-          {"Search"}
+          {t("search")}
         </FmsButton>
         </Col>
         </Row>
@@ -101,7 +104,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.username.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "email",
+    title: t("email"),
     dataIndex: "email",
     key: "email",
     resizable: true, 
@@ -110,7 +113,7 @@ export function getColumns(setModalProps:any) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={selectedKeys[0]}
           onChange={(e:any) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={confirm}
@@ -124,7 +127,7 @@ export function getColumns(setModalProps:any) {
           size="small"
           borderRadius={10}
         >
-          {"Search"}
+          {t("search")}
         </FmsButton>
         </Col>
         </Row>
@@ -133,7 +136,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.email.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "gender",
+    title: t("gender"),
     dataIndex: "gender",
     key: "gender",
     resizable: true, 
@@ -142,7 +145,7 @@ export function getColumns(setModalProps:any) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={selectedKeys[0]}
           onChange={(e:any) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={confirm}
@@ -156,7 +159,7 @@ export function getColumns(setModalProps:any) {
           size="small"
           borderRadius={10}
         >
-          {"Search"}
+          {t("search")}
         </FmsButton>
         </Col>
         </Row>
@@ -165,7 +168,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.gender.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "role",
+    title: t("role"),
     dataIndex: "role",
     key: "role",
     resizable: true, 
@@ -174,7 +177,7 @@ export function getColumns(setModalProps:any) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={selectedKeys[0]}
           onChange={(e:any) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={confirm}
@@ -188,7 +191,7 @@ export function getColumns(setModalProps:any) {
           size="small"
           borderRadius={10}
         >
-          {"Search"}
+          {t("search")}
         </FmsButton>
         </Col>
         </Row>
@@ -197,7 +200,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.role.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "workingDate",
+    title: t("working-date"),
     dataIndex: "workingDate",
     key: "workingDate",
     sorter: (a: any, b: any) => a.workingDate.localeCompare(b.workingDate),
@@ -219,7 +222,7 @@ export function getColumns(setModalProps:any) {
               borderRadius={10}
               style={{ marginRight: 8 }}
             >
-              {"Search"}
+              {t("search")}
             </FmsButton>
           </Col>
         </Row>
@@ -235,7 +238,7 @@ export function getColumns(setModalProps:any) {
     },
   },
   {
-    title: "country",
+    title: t("country"),
     dataIndex: "country",
     key: "country",
     resizable: true, 
@@ -244,7 +247,7 @@ export function getColumns(setModalProps:any) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm  }:any) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           value={selectedKeys[0]}
           onChange={(e:any) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={confirm}
@@ -258,7 +261,7 @@ export function getColumns(setModalProps:any) {
           size="small"
           borderRadius={10}
         >
-          {"Search"}
+          {t("search")}
         </FmsButton>
         </Col>
         </Row>
@@ -267,7 +270,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.country.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "Actions",
+    title: t("actions"),
     key: "actions",
     render: (text: any, record: any) => (
       <FmsButton
@@ -276,7 +279,7 @@ export function getColumns(setModalProps:any) {
         borderRadius={32}
         onClick={() => setModalProps({ isOpen: true, data: record })}
       >
-        {"edit"}
+        {t("edit")}
       </FmsButton>
     ),
   },

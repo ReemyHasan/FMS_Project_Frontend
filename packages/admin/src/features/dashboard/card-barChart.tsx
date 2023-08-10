@@ -19,18 +19,18 @@ export default function CardBarChart({errorTrapCount, warnTrapCount, infoTrapCou
       type: "bar",
       data: {
         labels: [
-          "ERROR",
-          "WARNING",
-          "INFO"
+          t("error"),
+          t("warning"),
+          t("info")
         ],
         datasets: [
           {
-            label: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+            label: t(`error`),
             backgroundColor: ["#EF4444", "#fadb14", "#10B981"],
             borderColor: "#000f24",
             data: [errorTrapCount/trapCount, warnTrapCount/trapCount, infoTrapCount/trapCount],
             fill: false,
-            barThickness: 30,
+            barThickness: 40,
           }
         ],
       },
@@ -105,10 +105,10 @@ export default function CardBarChart({errorTrapCount, warnTrapCount, infoTrapCou
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-                {t("Performance")}
+                {t("performance")}
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-              {t("Severity")}
+              {t("severity")}
               </h2>
             </div>
           </div>

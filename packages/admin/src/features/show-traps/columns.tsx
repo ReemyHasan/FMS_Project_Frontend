@@ -1,7 +1,11 @@
 import {Col, DatePicker, Input, Row } from "antd";
 import FmsButton from "../../../../shared-library/src/buttons/fms-button";
+import useTranslation from "next-translate/useTranslation";
+import { TranslationFiles } from "@/src/data/core";
 
 export function getColumns(setModalProps:any) {
+  const { t } = useTranslation(TranslationFiles.COMMON);
+
   function changeTimestamp(timestamp:any){
     const date = new Date(timestamp);
     const hours = date.getHours().toString();
@@ -12,7 +16,7 @@ export function getColumns(setModalProps:any) {
   const { RangePicker } = DatePicker;
   return [
   {
-    title: "timestamp",
+    title: t("timestamp"),
     dataIndex: "timestamp",
     key: "timestamp",
     resizable: true, 
@@ -54,7 +58,7 @@ export function getColumns(setModalProps:any) {
     },
   },
   {
-    title: "agent-address",
+    title: t("agent-address"),
     dataIndex: "agentAddress",
     key: "agentAddress",
     resizable: true, 
@@ -87,7 +91,7 @@ export function getColumns(setModalProps:any) {
   },
 
   {
-    title: "severity",
+    title: t("severity"),
     dataIndex: "severity",
     key: "severity",
     resizable: true, 
@@ -120,7 +124,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.severity.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "specific-trap",
+    title: t("specific-trap"),
     dataIndex: "specificTrap",
     key: "specificTrap",
     resizable: true, 
@@ -152,7 +156,7 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.specificTrap.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "generic-trap",
+    title: t("generic-trap"),
     dataIndex: "genericTrap",
     key: "genericTrap",
     resizable: true, 
@@ -184,14 +188,14 @@ export function getColumns(setModalProps:any) {
     onFilter: (value:any, record:any) => record.genericTrap.toLowerCase().includes(value.toLowerCase()),
   },
   {
-    title: "Actions",
+    title: t("actions"),
     key: "actions",
     render: (text: any, record: any) => (
       <FmsButton
         type="primary"
         onClick={() => setModalProps({ isOpen: true, variableBinding: record.variableBindings })}
       >
-        Show Details
+        {t("show-details")}
       </FmsButton>
     ),
   },

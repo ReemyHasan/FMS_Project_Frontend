@@ -63,19 +63,19 @@ const SignUpForm = () => {
               <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-                label={t("email.label")}
+                label={t("email")}
                 name="email"
                 rules={[
                   { required: true, message: "Please enter your email." },
                   { type: 'email', message: 'Please enter a valid email address.' },
                 ]}
               >
-                <Input placeholder={t("email.label")} />
+                <Input placeholder={t("email")} />
               </Form.Item>
               </Col>
               <Col span={12}>
               <Form.Item
-                label={t("username.label")}
+                label={t("username")}
                 name="username"
                 rules={[
                   { required: true, message: "Please enter your username." },
@@ -86,18 +86,18 @@ const SignUpForm = () => {
               </Col>
               </Row>
               <Form.Item
-                label={t("password")}
+                label={t("password.label")}
                 name="password"
                 rules={[
                   { required: true, message: "Please enter your password." },
                 ]}
               >
-                <Input.Password placeholder={t("password")} />
+                <Input.Password placeholder={t("password.label")} />
               </Form.Item>
               <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-                label={t("gender-label")}
+                label={t("gender")}
                 name="gender"
                 rules={[
                   { required: true, message: "Please select your gender." },
@@ -111,13 +111,13 @@ const SignUpForm = () => {
               </Col>
               <Col span={12}>
               <Form.Item
-                label={t("role.label")}
+                label={t("role")}
                 name="role"
                 rules={[
                   { required: true, message: "Please select a role." },
                 ]}
               >
-                <Select placeholder={t("role.label")}>
+                <Select placeholder={t("role")}>
                   <Option value="user">{t("user")}</Option>
                   <Option value="admin">{t("admin")}</Option>
                 </Select>
@@ -127,26 +127,27 @@ const SignUpForm = () => {
               <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-                label={t("workingDate.label")}
+                label={t("working-date")}
                 name="workingDate"
                 rules={[
                   { required: true, message: "Please select a working date." },
                 ]}
               >
-                <DatePicker placeholder={t("workingDate.label")} />
+                <DatePicker placeholder={t("working-date")} />
               </Form.Item>
               </Col>
               <Col span={12}>
               <Form.Item
-                label={t("country.label")}
+                label={t("country")}
                 name="country"
                 rules={[
                   { required: true, message: "Please select a country." },
                 ]}
               >
-                <Select placeholder={t("country.label")}>
-                  <Option value="syria">{t("syria")}</Option>
-                  <Option value="others">{t("others")}</Option>
+                <Select placeholder={t("country")}>
+                  <Option value="syria">{t("Syria")}</Option>
+                  <Option value="USA">{t("USA")}</Option>
+                  <Option value="Lebanon">{t("Lebanon")}</Option>
                 </Select>
               </Form.Item>
               </Col>
