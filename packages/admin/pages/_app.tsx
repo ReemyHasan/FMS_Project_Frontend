@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
     removeCookie("role", { path: "/", sameSite: true });
     removeCookie("token", { path: "/", sameSite: true });
     removeCookie("username", { path: "/", sameSite: true });
-    if (cookies["fetch"]) removeCookie("fetch", { path: "/", sameSite: true });
+    removeCookie("fetch", { path: "/", sameSite: true });
     window.location.href = "/sign-in";
   };
 
@@ -45,7 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
       () => {
         removeCookieAfterOneHour();
       },
-      360000 //000
+      1800000 //000
     );
     return () => {
       clearTimeout(timeout);

@@ -53,7 +53,7 @@ const Login = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       removeCookieAfterOneHour();
-    }, 360000 //000
+    }, 1800000 //000
     );
     return () => {
       clearTimeout(timeout);

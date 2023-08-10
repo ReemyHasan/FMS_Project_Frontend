@@ -15,8 +15,14 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     setIsCollapsed(!isCollapsed);
   };
   const { data, setData } = useContext(DataContext);
-  const [cookies, setCookie] = useCookies([]);
+  const [cookies, setCookie, removeCookie] = useCookies([]);
   useEffect(() => {
+    const handleBeforeUnload = () => {
+      removeCookie("fetch", { path: "/", sameSite: true }); // Delete the 'fetch' cookie
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     if (!cookies["fetch"] ) {
       const fetchData1 = async () => {
         try {
@@ -65,6 +71,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
     return () => {
       source.close();
+      window.removeEventListener("beforeunload", handleBeforeUnload); // Remove the event listener
       console.log("SSE closed ");
     };
   }, []);

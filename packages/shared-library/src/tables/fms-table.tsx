@@ -4,7 +4,6 @@ import {
   Tag,
 } from "antd";
 import classes from "./styles.module.css";
-import FmsButton from "../buttons/fms-button";
 interface fmsTableProps {
   title: string;
   columns: Array<any>;

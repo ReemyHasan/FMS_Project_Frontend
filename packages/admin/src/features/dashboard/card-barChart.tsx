@@ -1,36 +1,37 @@
 import React, { Component } from "react";
 import Chart from "chart.js/auto";
-export default function CardBarChart() {
+import useTranslation from "next-translate/useTranslation";
+import { TranslationFiles } from "@/src/data/core";
+interface Props {
+  errorTrapCount: number;
+  warnTrapCount: any;
+  infoTrapCount:number;
+  trapCount: number;
+}
+export default function CardBarChart({errorTrapCount, warnTrapCount, infoTrapCount, trapCount}:Props) {
+  const { t } = useTranslation(TranslationFiles.COMMON);
+
   React.useEffect(() => {
+    if (window.myBar) {
+      window.myBar.destroy();
+    }
     let config = {
       type: "bar",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
+          "ERROR",
+          "WARNING",
+          "INFO"
         ],
         datasets: [
           {
-            label: new Date().getFullYear(),
-            backgroundColor: "#000f24",
+            label: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+            backgroundColor: ["#EF4444", "#fadb14", "#10B981"],
             borderColor: "#000f24",
-            data: [30, 78, 56, 34, 100, 45, 13],
+            data: [errorTrapCount/trapCount, warnTrapCount/trapCount, infoTrapCount/trapCount],
             fill: false,
-            barThickness: 8,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#fadb14",
-            borderColor: "#fadb14",
-            data: [27, 68, 86, 74, 10, 4, 87],
-            barThickness: 8,
-          },
+            barThickness: 30,
+          }
         ],
       },
       options: {
@@ -38,7 +39,7 @@ export default function CardBarChart() {
         responsive: true,
         title: {
           display: false,
-          text: "Orders Chart",
+          text: "Severity Chart",
         },
         tooltips: {
           mode: "index",
@@ -61,7 +62,7 @@ export default function CardBarChart() {
               display: false,
               scaleLabel: {
                 display: true,
-                labelString: "Month",
+                labelString: "Severity",
               },
               gridLines: {
                 borderDash: [2],
@@ -96,7 +97,7 @@ export default function CardBarChart() {
     };
     let ctx = document.getElementById("bar-chart").getContext("2d");
     window.myBar = new Chart(ctx, config);
-  }, []);
+  }, [errorTrapCount, warnTrapCount, infoTrapCount, trapCount]);
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -104,10 +105,10 @@ export default function CardBarChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-                Performance
+                {t("Performance")}
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                Total orders
+              {t("Severity")}
               </h2>
             </div>
           </div>
@@ -115,7 +116,7 @@ export default function CardBarChart() {
         <div className="p-4 flex-auto">
           {/* Chart */}
           <div className="relative h-350-px">
-            <canvas id="bar-chart"></canvas>
+            <canvas id={"bar-chart"}></canvas>
           </div>
         </div>
       </div>

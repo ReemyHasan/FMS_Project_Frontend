@@ -1,12 +1,9 @@
 import React from "react";
-import { Card, Col } from "antd";
-import styles from "./index.module.css";
 import CardLineChart from "./card-lineChart";
 import CardBarChart from "./card-barChart";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import CardUsers from "./card-users";
-import CardSocialTraffic from './card-socialTraffics'
 import CardStats from './card-stats'
 const DashboardComponent = () => {
     const { t } = useTranslation(TranslationFiles.COMMON);
@@ -76,7 +73,6 @@ const DashboardComponent = () => {
               <CardUsers />
             </div>
             <div className="w-full xl:w-4/12 px-4">
-              <CardSocialTraffic />
             </div>
           </div>
         </>

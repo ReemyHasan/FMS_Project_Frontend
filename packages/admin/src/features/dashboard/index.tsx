@@ -1,12 +1,9 @@
-import React, {useEffect, useContext, useState} from "react";
-import { Card, Col } from "antd";
-import styles from "./index.module.css";
+import React, {useEffect, useState} from "react";
 import CardLineChart from "./card-lineChart";
 import CardBarChart from "./card-barChart";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
 import CardUsers from "./card-users";
-import CardSocialTraffic from './card-socialTraffics'
 import CardStats from './card-stats'
 import { getAdminsCount, getUsersCount } from "@/src/services/user-service";
 import {getTrapsCount, getErrorTrapCount, getWarningTrapCount, getInfoTrapCount} from "@/src/services/traps-service";
@@ -131,13 +128,13 @@ const DashboardComponent = () => {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="PERFORMANCE"
+                  statSubtitle="MODEL PERFORMANCE"
                   statTitle="49,65%"
                   statArrow="up"
                   statPercent="12"
                   statPercentColor="text-emerald-500"
-                  // statDescripiron="Since last month"
-                  statIconName="fas fa-percent"
+                  statDescripiron="Since last month"
+                  statIconName="Model"
                   statIconColor="bg-lightBlue-500"
                 />
               </div>
@@ -147,10 +144,15 @@ const DashboardComponent = () => {
               <CardLineChart />
             </div>
             <div className="w-full xl:w-4/12 px-4 py-4">
-              <CardBarChart />
+              <CardBarChart 
+              errorTrapCount = {errorTrapCount}
+              warnTrapCount = {warnTrapCount}
+              infoTrapCount = {infoTrapCount}
+              trapCount = {trapCount}
+              />
             </div>
           </div>
-          <div className="flex flex-wrap mt-4">
+          <div className="flex flex-wrap mt-4 shadow-2xl">
             {/* <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4"> */}
               <CardUsers />
             {/* </div> */}
