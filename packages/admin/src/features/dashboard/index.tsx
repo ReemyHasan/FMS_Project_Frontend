@@ -82,7 +82,7 @@ const DashboardComponent = () => {
                   statSubtitle={t("traps")}
                   statTitle={trapCount !== undefined ? trapCount : "..."}
                   statArrow="up"
-                  statPercent={`${(errorTrapCount/(trapCount+errorTrapCount))}`}
+                  statPercent={trapCount !== undefined ? `${(errorTrapCount/(trapCount+errorTrapCount))}` : "..."}
                   statPercentColor="text-red-500"
                   statDescripiron={t("error-traps")}
                   statIconName="traps"

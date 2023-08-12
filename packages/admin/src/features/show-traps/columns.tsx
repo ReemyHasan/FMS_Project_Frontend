@@ -193,6 +193,8 @@ export function getColumns(setModalProps:any) {
     render: (text: any, record: any) => (
       <FmsButton
         type="primary"
+        size="middle"
+        borderRadius={8}
         onClick={() => setModalProps({ isOpen: true, variableBinding: record.variableBindings })}
       >
         {t("show-details")}

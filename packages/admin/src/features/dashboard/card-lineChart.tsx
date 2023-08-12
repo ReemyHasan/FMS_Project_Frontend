@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import { getSeverityStatistics } from "../../services/traps-service";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
+import MainUtils from "@/src/utils/main";
 export default function CardLineChart() {
   const { t } = useTranslation(TranslationFiles.COMMON);
 
@@ -32,7 +33,7 @@ export default function CardLineChart() {
       window.myLine.destroy();
     }
     // Check if data has been fetched and is not an empty object
-    if (Object.keys(data).length > 0) {
+    if ( !MainUtils.isEmptyValue(data)) {
       const labels = Object.keys(data).sort(); // Use the sorted timestamps as labels
 
       const datasets = Object.keys(severityColors).map((severity) => ({
