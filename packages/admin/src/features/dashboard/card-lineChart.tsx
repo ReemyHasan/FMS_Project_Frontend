@@ -14,7 +14,6 @@ export default function CardLineChart() {
     const fetchData = async () => {
       try {
         const response = await getSeverityStatistics(cookies["token"]);
-        // console.log(response);
         setData(response);
       } catch (error) {
         console.error("Error fetching data:", error);

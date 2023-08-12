@@ -31,7 +31,6 @@ export default function EditUserPopup({ modalProps, setModalProps }: Props) {
     setModalProps(false, null);
   };
   useEffect(() => {
-    console.log(MainUtils.cloneObject(modalProps.data));
     setIsModalOpen(modalProps.isOpen);
     setUserData(modalProps.data);
   }, [modalProps]);

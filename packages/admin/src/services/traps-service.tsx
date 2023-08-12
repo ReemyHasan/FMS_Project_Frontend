@@ -32,7 +32,6 @@ export const getSeverityStatistics = async (token:any) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log("response: "+response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -46,7 +45,6 @@ export const getTrapsCount = async (token:any) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log("response: "+response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -60,7 +58,6 @@ export const getErrorTrapCount = async (token:any) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log("response: "+response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -74,7 +71,6 @@ export const getWarningTrapCount = async (token:any) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log("response: "+response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -88,7 +84,6 @@ export const getInfoTrapCount = async (token:any) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log("response: "+response);
     return response.data;
   } catch (error) {
     console.log(error);

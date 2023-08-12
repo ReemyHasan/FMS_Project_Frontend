@@ -16,7 +16,6 @@ const SettingProfileContent = () => {
       try {
         const response = await getUserInfo(cookies["username"], cookies["token"]);
         setData(response);
-        console.log(response);
  
       } catch (error) {
 

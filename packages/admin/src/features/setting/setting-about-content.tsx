@@ -25,7 +25,6 @@ export default function SettingAboutContent() {
   const [cookies] = useCookies([]);
   async function sendMessage() {
     const response = await sendEmailMessage(formData,cookies["token"],cookies["role"]);
-    console.log(response);
     if (response == true) {
       setSendingStatus("success");
     } else {
@@ -34,10 +33,8 @@ export default function SettingAboutContent() {
   }
   async function UpdateAboutInfo() {
     for (let i = 0; i < data.length; i++) {
-      console.log("data", data[i]);
       if (!MainUtils.isEmptyValue( data[i].value)) {
         const response = await UpdateAboutSettingData(data[i],cookies["token"],cookies["role"]);
-        console.log(response);
         if (!MainUtils.isEmptyObject(response)) {
           message.success(data[i].key+" Updated successfully");
         } else {

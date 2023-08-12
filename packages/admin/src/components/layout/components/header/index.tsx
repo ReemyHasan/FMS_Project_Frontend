@@ -17,7 +17,6 @@ export default function AppHeader({ toggleCollapse }: AppHeaderProps) {
   //   }
   //   websocket.onmessage = function (event:any) {
   //     const message = JSON.parse(event.data);
-  //     console.log(message);
   //     if (message.new_val != null) {
   //       const newData = message.new_val;
   //       const transformedData = {

@@ -23,7 +23,6 @@ const [cookies] = useCookies([]);
       try {
         const response = await getAllUsers(cookies["token"], cookies["role"]);
         setData(response); 
-        console.log(response);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

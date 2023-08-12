@@ -6,9 +6,7 @@ import MainUtils from "../utils/main";
 export const login = async (data: any) => {
   try {
     const values = MainUtils.cloneObject(data);
-    // console.log(values);
     const response = await axios.post(AuthURL+"token", values);
-    // console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -25,7 +23,6 @@ export const Register = async (data:any,token:any,role:any) => {
           },
         }
       );
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -49,14 +46,11 @@ export const getUserInfo = async (data: any, token:any) => {
 export const getAllUsers = async (token:any, role:any) => {
   if(role=="admin"){
   try {
-    // console.log("data: "+data);
-    // console.log("token: "+ token);
     const response = await axios.get(UserURL + `getAllUsers`,{
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     message.error("Error: " + error);
@@ -96,15 +90,11 @@ export const getUsersCount = async (token:any, role:any) => {
 export const deleteUser = async (id: any, token:any,role:any) => {
   if(role=="admin"){
   try {
-    // console.log("data: "+data);
-    // console.log("token: "+ token);
-
     const response = await axios.delete(UserURL + `delete/${id}`,{
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     message.error("Error: " + error);
@@ -114,14 +104,11 @@ export const deleteUser = async (id: any, token:any,role:any) => {
 export const UpdateUserInfo = async (data:any, token:any, role:any) => {
   if(role=="admin"){
   try {
-    // console.log("data: "+data);
-    // console.log("token: "+ token);
     const response = await axios.put(UserURL + `/updateUser`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-     console.log(response.data);
     return response.data;
   } catch (error) {
     message.error("Error: " + error);

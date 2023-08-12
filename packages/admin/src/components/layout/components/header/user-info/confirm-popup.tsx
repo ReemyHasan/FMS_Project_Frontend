@@ -17,7 +17,6 @@ const ConfirmPopup: React.FC = () => {
         logout();
       },
       onCancel() {
-        console.log("Cancel");
       },
     });
   };

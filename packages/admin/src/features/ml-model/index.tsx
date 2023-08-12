@@ -34,7 +34,6 @@ export default function MLContent() {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      console.log(formData);
       sendFileToServer(formData);
     }
   };

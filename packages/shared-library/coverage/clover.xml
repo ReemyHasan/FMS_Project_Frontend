@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1691798401972" clover="3.2.0">
+  <project timestamp="1691798401972" name="All files">
+    <metrics statements="18" coveredstatements="18" conditionals="17" coveredconditionals="14" methods="6" coveredmethods="6" elements="41" coveredelements="38" complexity="0" loc="18" ncloc="18" packages="2" files="3" classes="3"/>
+    <package name="assets.icons">
+      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <file name="avatar-placeholder-icon.tsx" path="C:\Users\Reem\Desktop\Fifth Year\5th year projects 2022-2023\Project\Web application\FMS_Project_Frontend\packages\shared-library\assets\icons\avatar-placeholder-icon.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+      </file>
+      <file name="test-avatar-icon.tsx" path="C:\Users\Reem\Desktop\Fifth Year\5th year projects 2022-2023\Project\Web application\FMS_Project_Frontend\packages\shared-library\assets\icons\test-avatar-icon.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.buttons">
+      <metrics statements="6" coveredstatements="6" conditionals="17" coveredconditionals="14" methods="2" coveredmethods="2"/>
+      <file name="fms-button.tsx" path="C:\Users\Reem\Desktop\Fifth Year\5th year projects 2022-2023\Project\Web application\FMS_Project_Frontend\packages\shared-library\src\buttons\fms-button.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="17" coveredconditionals="14" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="25" count="15" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

@@ -16,7 +16,6 @@ const UserProfile = () => {
       try {
         const response = await getUserInfo(cookies["username"], cookies["token"]);
         setData(response);
-        console.log(response);
       } catch (error) {
         // Handle any errors that might occur during the API call
       }

@@ -31,7 +31,6 @@ export const putAboutSettingData = async (data:any,token:any,role:any) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -46,7 +45,6 @@ export const putAboutSettingData = async (data:any,token:any,role:any) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -61,7 +59,6 @@ export const putAboutSettingData = async (data:any,token:any,role:any) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
       return response;
     } catch (error) {
       console.error(error);

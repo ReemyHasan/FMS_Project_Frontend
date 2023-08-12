@@ -13,7 +13,6 @@ const NavBar = () => {
           <Menu 
         mode="horizontal" 
         onSelect={(selectedItem:any) => {
-          console.log(selectedItem.key)
           router.push(`/user/${selectedItem.key}`);
         }}
         overflowedIndicator={<MenuOutlined style={{ fontSize: "20px", color: "#000" }}

@@ -15,7 +15,6 @@ export default function AppHeader() {
   //   }
   //   websocket.onmessage = function (event:any) {
   //     const message = JSON.parse(event.data);
-  //     console.log(message);
   //     if (message.new_val != null) {
   //       const newData = message.new_val;
   //       const transformedData = {

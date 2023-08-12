@@ -30,11 +30,9 @@ export default function AboutContent() {
   async function getAboutInfo() {
     const response = await fetchAboutSettingData(cookies["token"],cookies["role"]);
     setData(response);
-    console.log(data);
   }
   async function sendMessage() {
     const response = await sendEmailMessage(formData,cookies["token"],cookies["role"]);
-    console.log(response);
     if (response == true) {
       setSendingStatus("success");
     } else {

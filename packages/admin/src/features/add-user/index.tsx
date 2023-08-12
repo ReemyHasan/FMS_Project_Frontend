@@ -14,7 +14,6 @@ const SignUpForm = () => {
 
   const onFinish = async (values:any) => {
     try {
-      console.log(values);
       setLoading(true);
       await Register(values, cookies["token"], cookies["role"]);
       setLoading(false);
