@@ -30,7 +30,7 @@ export default function CardBarChart({errorTrapCount, warnTrapCount, infoTrapCou
             borderColor: "#000f24",
             data: [errorTrapCount/trapCount, warnTrapCount/trapCount, infoTrapCount/trapCount],
             fill: false,
-            barThickness: 40,
+            barThickness: 50,
           }
         ],
       },

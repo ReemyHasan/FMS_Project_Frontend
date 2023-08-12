@@ -44,7 +44,8 @@ export default function AppHeader({ toggleCollapse }: AppHeaderProps) {
   //   };
   // }, []);
   const openKibana = () => {
-    window.open("http://172.29.3.220:5601", "_blank");
+    window.open("http://172.29.3.220:5601/app/dashboards#/view/575a6de0-37b0-11ee-9da0-7bf1d89a35bd?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:'2019-01-01T17:42:05.000Z',to:'2019-09-27T22:47:04.000Z'))"
+    , "_blank");
   };
 
 
@@ -61,7 +62,9 @@ export default function AppHeader({ toggleCollapse }: AppHeaderProps) {
         <Col span={12}>
           <Row gutter={8} align={"middle"} justify={"end"}>
           <Col className={"app-notifications"}>
-          <a href="http://172.29.3.220:5601" target="_blank" onClick={openKibana}>
+          <a 
+          href="http://172.29.3.220:5601/app/dashboards#/view/575a6de0-37b0-11ee-9da0-7bf1d89a35bd?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:'2019-01-01T17:42:05.000Z',to:'2019-09-27T22:47:04.000Z'))"
+           target="_blank" onClick={openKibana}>
           <img src="/images/elasticsearch.svg" alt="Kibana" style={{ width: "40px", height: "30px" }} title="Archive"/>
               </a>
             </Col>

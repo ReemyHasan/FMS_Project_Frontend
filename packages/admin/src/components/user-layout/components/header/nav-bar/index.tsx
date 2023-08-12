@@ -25,12 +25,12 @@ const NavBar = () => {
         <Menu.Item key="dashboard"  icon={<FundOutlined 
         style={{ fontSize: "20px", color: "#000" }}
         className={"ExclamationCircleOutlined "}/>}>
-          {t("dashborad")}
+          {t("dashboard")}
         </Menu.Item>
         <Menu.Item key="traps"  icon={<ExceptionOutlined 
         style={{ fontSize: "20px", color: "#000" }}
         className={"ExclamationCircleOutlined "}/>}>
-          {("trap-data")}
+          {t("traps")}
         </Menu.Item>
         <Menu.Item key="profile"  icon={<UserOutlined 
         style={{ fontSize: "20px", color: "#000" }}

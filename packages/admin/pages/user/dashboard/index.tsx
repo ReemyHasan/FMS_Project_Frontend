@@ -1,7 +1,7 @@
 import * as React from "react";
 import Head from "next/head";
 import UserLayout from "../../../src/components/user-layout";
-import  DashboardComponent from "@/src/features/dashboard";
+import  DashboardComponent from "@/src/features/dashboard/user-dashborad";
 import { Fragment } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { TranslationFiles } from "@/src/data/core";
