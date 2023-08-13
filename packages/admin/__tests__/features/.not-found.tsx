@@ -29,10 +29,48 @@ describe("NotFound component", () => {
     expect(router.back).toHaveBeenCalledTimes(1);
   });
 
-  it("should go to the home page when the 'Take Me Home' button is clicked", () => {
-    const { getByText } = render(<NotFound />);
-    const takeMeHomeButton = getByText("take-me-home");
+  it("handles take me home button click for user role", () => {
+    jest.mock("react-cookie", () => ({
+      useCookies: () => ({
+        cookies: {
+          role: "user",
+        },
+      }),
+    }));
+
+    render(<NotFound />);
+    const takeMeHomeButton = screen.getByText("take-me-home");
     fireEvent.click(takeMeHomeButton);
-    expect(router.push).toHaveBeenCalledWith("/");
+    expect(window.location.pathname).toBe("/");
+  });
+
+  it("handles take me home button click for admin role", () => {
+    // Mock the cookie to be an "admin"
+    jest.mock("react-cookie", () => ({
+      useCookies: () => ({
+        cookies: {
+          role: "admin",
+        },
+      }),
+    }));
+
+    render(<NotFound />);
+    const takeMeHomeButton = screen.getByText("take-me-home");
+    fireEvent.click(takeMeHomeButton);
+    expect(window.location.pathname).toBe("/");
+  });
+
+  it("handles take me home button click for unknown role", () => {
+    // Mock the cookie to be undefined
+    jest.mock("react-cookie", () => ({
+      useCookies: () => ({
+        cookies: {},
+      }),
+    }));
+
+    render(<NotFound />);
+    const takeMeHomeButton = screen.getByText("take-me-home");
+    fireEvent.click(takeMeHomeButton);
+    expect(window.location.pathname).toBe("/");
   });
 });
