@@ -64,9 +64,9 @@ const Login = () => {
       <AuthWrapper>
         <Row justify={"center"} className={styles.logoImg}>
           <Image
-            src={"/images/elasticsearch.svg"}
+            src={"/images/logo.svg"}
             alt="sign-in-logo"
-            height={160}
+            height={200}
             width={200}
           />
         </Row>

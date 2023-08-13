@@ -24,7 +24,7 @@ export const Register = async (data:any,token:any,role:any) => {
         }
       );
     } catch (error) {
-      console.error(error);
+     return error;
     }
   }
   };

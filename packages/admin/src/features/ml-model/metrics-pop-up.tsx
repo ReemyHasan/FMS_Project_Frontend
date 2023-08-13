@@ -37,7 +37,7 @@ export default function MetricsPopUp({ modalProps, setModalProps }: Props) {
   return (
     <Modal title="Metrics Details" visible={isModalOpen} onOk={handleCancel} onCancel={handleCancel}>
       <div>
-        Hi
+        {modalProps.metrics}
       </div>
     </Modal>
   );

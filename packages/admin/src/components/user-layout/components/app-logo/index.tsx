@@ -9,14 +9,14 @@ const AppLogo = ({ darkMode = false }: AppLogoProps) => {
     <div className="app-logo">
       {darkMode ? (
         <Image
-          src="/images/logoSider.png"
+          src="/images/logo.svg"
           alt="fms-logo"
           width={120}
           height={120}
         />
       ) : (
         <Image
-          src="/images/logoSider.png"
+          src="/images/logo.svg"
           alt="fms-logo"
           width={120}
           height={120}

@@ -6,7 +6,7 @@ import AppHeader from "./components/header";
 import { useCookies } from "react-cookie";
 import DataContext from "../../context/trap-context";
 import { fetchData } from "../../services/traps-service";
-import { ApiGatewayURL } from "@/src/data/constant/app-constant";
+import { NotificationUrl } from "@/src/data/constant/app-constant";
 type AppLayoutProps = {
   children: ReactNode;
 };
@@ -40,7 +40,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
     const authToken = `${cookies["token"]}`;
     const source = new EventSource(
-      `${ApiGatewayURL}/api/notifications/sub?token=${authToken}`
+      `${NotificationUrl}/sub?token=${authToken}`
     );
 
     source.addEventListener("open", () => {

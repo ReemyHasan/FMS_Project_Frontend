@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { sendFileToServer } from "../../services/ml-model-service";
+import { sendFileToServer, feedbackReset, calcMetrics, trainModel } from "../../services/ml-model-service";
 import MetricsPopUp from "./metrics-pop-up";
 export default function MLContent() {
   const { t } = useTranslation(TranslationFiles.COMMON);
@@ -15,6 +15,7 @@ export default function MLContent() {
   const [createObjectURL, setCreateObjectURL] = useState(null);
   const [modalProps, setModalProps] = useState({
     isOpen: false,
+    metrics: ""
   });
   const handleFileChange = (info: any) => {
     if (info.fileList.length > 0) {
@@ -23,19 +24,28 @@ export default function MLContent() {
       setSelectedFile(i);
       setCreateObjectURL(URL.createObjectURL(i));
     }
-    // if (event.target.files && event.target.files[0]) {
-    //   const i = event.target.files[0];
 
-    //   setSelectedFile(i);
-    //   setCreateObjectURL(URL.createObjectURL(i));
-    // }
   };
   const uploadFile = async () => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      sendFileToServer(formData);
+      sendFileToServer(formData, cookies["token"],cookies["role"]);
     }
+  };
+  const Reset = async () => {
+
+    feedbackReset(cookies["token"],cookies["role"]);
+    
+  };
+  const calcMetric = async () => {
+
+    const res = await calcMetrics(cookies["token"],cookies["role"]);
+    return res;
+  };
+  const train = async () => {
+
+    await trainModel(cookies["token"],cookies["role"]);
   };
   return (
     <>
@@ -121,7 +131,7 @@ export default function MLContent() {
                         className="traity active:bg-blueGray-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         size="large"
                         borderRadius="32"
-                        onClick={uploadFile}
+                        onClick={Reset}
                       >
                         {t("reset-knowledge-base")}
                       </button>
@@ -138,7 +148,7 @@ export default function MLContent() {
                         className="secondary active:bg-blueGray-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         size="large"
                         borderRadius="32"
-                        onClick={uploadFile}
+                        onClick={train}
                       >
                         {t("train-model")}
                       </button>
@@ -155,7 +165,10 @@ export default function MLContent() {
                         className="link active:bg-blueGray-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         size="large"
                         borderRadius="32"
-                        onClick={() => setModalProps({ isOpen: true})}
+                        onClick={async () => {
+                          const metrics = await calcMetric(); 
+                          setModalProps({ isOpen: true, metrics: metrics });
+                        }}
                       >
                         {t("calc-metrics")}
                       </button>

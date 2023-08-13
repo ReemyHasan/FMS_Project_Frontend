@@ -15,7 +15,7 @@ const SignUpForm = () => {
   const onFinish = async (values:any) => {
     try {
       setLoading(true);
-      await Register(values, cookies["token"], cookies["role"]);
+      const response = await Register(values, cookies["token"], cookies["role"]);
       setLoading(false);
       message.success("User registered successfully!");
     } catch (error) {
