@@ -29,6 +29,7 @@ const Login = () => {
       setCookie("token", response.data); 
       setCookie("role", info.role);
       setCookie("username", info.username);
+      setCookie("startTime", Date.now());
       if(info.role=="admin"){
       router.push("/");
       }
@@ -42,23 +43,27 @@ const Login = () => {
     }
   };
 
-  const removeCookieAfterOneHour = async () =>  {
-    removeCookie("role", { });
-    removeCookie("token", { });
-    removeCookie("username", { });
-    removeCookie("fetch", { });
-    window.location.href = "/sign-in";
-  };
+  // const removeCookieAfterOneHour = async () =>  {
+  //   removeCookie("role", { });
+  //   removeCookie("token", { });
+  //   removeCookie("username", { });
+  //   removeCookie("fetch", { });
+  //   removeCookie("startTime", { });
+  //   window.location.href = "/sign-in";
+  // };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      removeCookieAfterOneHour();
-    }, 1800000 //000
-    );
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const now = Date.now();
+  //   const end = cookies["startTime"] + 60000;
+  //   const timer = end - now;  
+  //   const timeout = setTimeout(() => {
+  //     removeCookieAfterOneHour();
+  //   }, timer
+  //   );
+  //   return () => {
+  //     clearTimeout(timeout);
+  //   };
+  // }, []);
   return (
     <div data-testid="login-component">
       <AuthWrapper>
@@ -113,15 +118,6 @@ const Login = () => {
                 </Form.Item>
               </Form.Item>
               <div>
-                {/* <Form.Item className={styles.rememberMe}>
-                  <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>{t("remember-me")}</Checkbox>
-                  </Form.Item>
-
-                  <a className={styles.loginFormForgot} href="">
-                    {t("forget-password")}
-                  </a>
-                </Form.Item> */}
               </div>
               <Button
                 data-testid="submit-button"
