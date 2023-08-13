@@ -1,7 +1,7 @@
 import MenuIcon from "@/src/components/assets/custom-ant-icons/menu-icon";
 import React from "react";
 import UsersIcon from "@/src/components/assets/custom-ant-icons/sidebar/users-icon";
-import { ExclamationOutlined, FontColorsOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined, ExclamationOutlined, FontColorsOutlined } from "@ant-design/icons";
 interface Props {
   statSubtitle: string;
   statTitle: string;
@@ -54,7 +54,12 @@ export default function CardStats({
                   style={{ fontSize: "30px", color: "#fff" }}
                   className={"ExclamationCircleOutlined "}
                 />
-                ): null
+                ): statIconName == "model" ? (
+                  <CheckCircleOutlined
+                  style={{ fontSize: "30px", color: "#fff" }}
+                  className={"ExclamationCircleOutlined "}
+                />
+                ):null
                 }
                 {/* <i className={statIconName}></i> */}
               </div>

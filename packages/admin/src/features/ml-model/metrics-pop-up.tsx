@@ -24,6 +24,7 @@ interface Props {
 
 export default function MetricsPopUp({ modalProps, setModalProps }: Props) {
   const { t } = useTranslation(TranslationFiles.COMMON);
+  const metricsArray = Array.isArray(modalProps.metrics) ? modalProps.metrics : [];
 
   const [isModalOpen,setIsModalOpen] = useState(false);
   const handleCancel = () => {
@@ -41,9 +42,11 @@ export default function MetricsPopUp({ modalProps, setModalProps }: Props) {
     onOk={handleCancel} 
     onCancel={handleCancel}
     >
-      <div>
-        {modalProps.metrics}
-      </div>
+     <div>
+      {metricsArray.map((metric, index) => (
+        <div key={index}>{metric}</div>
+      ))}
+    </div>
     </Modal>
   );
 }

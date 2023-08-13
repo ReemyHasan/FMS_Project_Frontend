@@ -3,10 +3,16 @@ import { TranslationFiles } from "@/src/data/core";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
-import { Upload, Button } from "antd";
+import { Upload, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { sendFileToServer, feedbackReset, calcMetrics, trainModel } from "../../services/ml-model-service";
+import {
+  sendFileToServer,
+  feedbackReset,
+  calcMetrics,
+  trainModel,
+} from "../../services/ml-model-service";
 import MetricsPopUp from "./metrics-pop-up";
+import MainUtils from "@/src/utils/main";
 export default function MLContent() {
   const { t } = useTranslation(TranslationFiles.COMMON);
   const [cookies] = useCookies([]);
@@ -15,7 +21,7 @@ export default function MLContent() {
   const [createObjectURL, setCreateObjectURL] = useState(null);
   const [modalProps, setModalProps] = useState({
     isOpen: false,
-    metrics: ""
+    metrics: "",
   });
   const handleFileChange = (info: any) => {
     if (info.fileList.length > 0) {
@@ -24,28 +30,27 @@ export default function MLContent() {
       setSelectedFile(i);
       setCreateObjectURL(URL.createObjectURL(i));
     }
-
   };
   const uploadFile = async () => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      sendFileToServer(formData, cookies["token"],cookies["role"]);
+      sendFileToServer(formData, cookies["token"], cookies["role"]);
     }
   };
   const Reset = async () => {
-
-    feedbackReset(cookies["token"],cookies["role"]);
-    
+    feedbackReset(cookies["token"], cookies["role"]);
   };
   const calcMetric = async () => {
-
-    const res = await calcMetrics(cookies["token"],cookies["role"]);
-    return res;
+    const res = await calcMetrics(cookies["token"], cookies["role"]);
+    if (!MainUtils.isEmptyValue(res)) {
+      const resArray = res.split(",");
+      return resArray;
+    }
+    return "";
   };
   const train = async () => {
-
-    await trainModel(cookies["token"],cookies["role"]);
+    await trainModel(cookies["token"], cookies["role"]);
   };
   return (
     <>
@@ -100,25 +105,25 @@ export default function MLContent() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
                     {/* <p className="mt-2 mb-4 text-blueGray-500"> */}
-                      <Upload
-                        className="font-bold hover:shadow-md m-2 mt-3 shadow text-xs rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        customRequest={() => {}}
-                        beforeUpload={() => false}
-                        showUploadList={false}
-                        onChange={handleFileChange}
-                      >
-                        <Button icon={<UploadOutlined />}>
-                          {t("select-file")}
-                        </Button>
-                      </Upload>
-                      <button
-                        className="move active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        size="large"
-                        borderRadius="32"
-                        onClick={uploadFile}
-                      >
-                        {t("failures-feedback")}
-                      </button>
+                    <Upload
+                      className="font-bold hover:shadow-md m-2 mt-3 shadow text-xs rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                      customRequest={() => {}}
+                      beforeUpload={() => false}
+                      showUploadList={false}
+                      onChange={handleFileChange}
+                    >
+                      <Button icon={<UploadOutlined />}>
+                        {t("select-file")}
+                      </Button>
+                    </Upload>
+                    <button
+                      className="move active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                      size="large"
+                      borderRadius="32"
+                      onClick={uploadFile}
+                    >
+                      {t("failures-feedback")}
+                    </button>
                     {/* </p> */}
                   </div>
                 </div>
@@ -166,7 +171,7 @@ export default function MLContent() {
                         size="large"
                         borderRadius="32"
                         onClick={async () => {
-                          const metrics = await calcMetric(); 
+                          const metrics = await calcMetric();
                           setModalProps({ isOpen: true, metrics: metrics });
                         }}
                       >
@@ -185,10 +190,16 @@ export default function MLContent() {
             <div className="flex flex-wrap items-center mt-32">
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                  ffffffff
+                  Our Machine Learning Model
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                  ffffffff{" "}
+                  There is a powerful machine learning model builtin within the
+                  system to identify if there are faults in the network by
+                  montioring certain data from edge devices in the network. It
+                  classifies intances coming from devices into three classes
+                  [A,D,NE]. A means there is a fault in the Access Layer of the
+                  network. D means there is a fault in the Distribution Layer of
+                  te netwrok. NE means there is no fault detected.
                 </p>
               </div>
 
@@ -205,8 +216,7 @@ export default function MLContent() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 583 95"
                       className="absolute left-0 w-full block h-95-px -top-94-px"
-                    >
-                    </svg>
+                    ></svg>
                   </blockquote>
                 </div>
               </div>
@@ -246,10 +256,23 @@ export default function MLContent() {
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
                 {/* <div className="md:pr-12"> */}
-                  <h3 className="text-3xl font-semibold">lllllllllllllll</h3>
-                  <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                    llllllllll
-                  </p>
+                <h3 className="text-3xl font-semibold">How To Use?</h3>
+                <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
+                  You can view the instances and there classification by the
+                  model in the Kibana Dashboard by clicking the Elastic logo on
+                  the top right corner of the page. You can also give new data
+                  to knowledge base of the model by uploading a csv file of the
+                  following format: time1,time2,class This format means that the
+                  instances that lay in the range between the timestamp time1
+                  and the timestamp time2 should be classified as what the class
+                  field is (A,D, or NE). After adding the information the model
+                  does train automatically. Thus, there is a train model button
+                  that will request the model to train on the new and the old
+                  data together. You can evaluate the performance of the model
+                  by clicking the calc metrics button which will trigger the
+                  model to test itself on a builtin dataset and return the
+                  results.
+                </p>
                 {/* </div> */}
               </div>
             </div>

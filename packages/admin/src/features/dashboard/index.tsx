@@ -6,6 +6,7 @@ import { TranslationFiles } from "@/src/data/core";
 import CardUsers from "./card-users";
 import CardStats from './card-stats'
 import { getAdminsCount, getUsersCount } from "@/src/services/user-service";
+import {accuracy} from "@/src/services/ml-model-service"
 import {getTrapsCount, getErrorTrapCount, getWarningTrapCount, getInfoTrapCount} from "@/src/services/traps-service";
 import { useCookies } from "react-cookie";
 const DashboardComponent = () => {
@@ -17,6 +18,7 @@ const DashboardComponent = () => {
     const [errorTrapCount, setErrorTrapCount] = useState([]);
     const [warnTrapCount, setWarnTrapCount] = useState([]);
     const [infoTrapCount, setInfoTrapCount] = useState([]);
+    const [accu, setAccuracy] = useState([]);
     useEffect(() => {
       async function fetchAdminCount() {
         try {
@@ -66,13 +68,21 @@ const DashboardComponent = () => {
           console.log("error:"+error);
         }
       }
-
+      async function fetchAccuracy() {
+        try {
+          const response2 = await accuracy(cookies["token"], cookies["role"]);
+          setAccuracy(response2)
+        } catch (error) {
+          console.log("error:"+error);
+        }
+      }
       fetchAdminCount();
       fetchUserCount();
       fetchTrapsCount();
       fetchErrorTrapsCount();
       fetchWarnignTrapsCount();
       fetchInfoTrapsCount();
+      fetchAccuracy();
     }, []);
     return (
       <>
@@ -82,7 +92,7 @@ const DashboardComponent = () => {
                   statSubtitle={t("traps")}
                   statTitle={trapCount !== undefined ? trapCount : "..."}
                   statArrow="up"
-                  statPercent={trapCount !== undefined ? `${(errorTrapCount/(trapCount+errorTrapCount))}` : "..."}
+                  statPercent={trapCount !== undefined ? `${(errorTrapCount/(trapCount+errorTrapCount)).toFixed(2)}` : "..."}
                   statPercentColor="text-red-500"
                   statDescripiron={t("error-traps")}
                   statIconName="traps"
@@ -94,7 +104,7 @@ const DashboardComponent = () => {
                   statSubtitle={t("users")}
                   statTitle={userCount !== undefined ? userCount : "..."}
                   statArrow="down"
-                  statPercent={`${(userCount/(userCount+adminCount))}`}
+                  statPercent={`${(userCount/(userCount+adminCount)).toFixed(2)}`}
                   statPercentColor={
                     userCount !== undefined && adminCount !== undefined
                       ? parseFloat(userCount) / (userCount + adminCount) >= 0.5
@@ -113,7 +123,7 @@ const DashboardComponent = () => {
                   statSubtitle={t("admins")}
                   statTitle={adminCount !== undefined ? adminCount : "..."}
                   statArrow="down"
-                  statPercent={`${(adminCount/(userCount+adminCount))}`}
+                  statPercent={`${(adminCount/(userCount+adminCount)).toFixed(2)}`}
                   statPercentColor={
                     userCount !== undefined && adminCount !== undefined
                       ? parseFloat(adminCount) / (userCount + adminCount) >= 0.5
@@ -129,13 +139,13 @@ const DashboardComponent = () => {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle={t("model-performance")}
-                  statTitle="49,65%"
+                  statTitle="Accuracy"
                   statArrow="up"
-                  statPercent=""
+                  statPercent={`${accu}`}
                   statPercentColor="text-emerald-500"
                   statDescripiron=""
-                  statIconName="Model"
-                  statIconColor="bg-lightBlue-500"
+                  statIconName="model"
+                  statIconColor="bg-emerald-500"
                 />
               </div>
             </div>

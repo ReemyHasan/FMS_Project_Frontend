@@ -56,8 +56,7 @@ export default function AboutContent() {
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80')",
-            }}
+                "url('/images/ml-model.jpg')"  }}
           >
             <span
               id="blackOverlay"
@@ -161,7 +160,7 @@ export default function AboutContent() {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700">
                   <img
                     alt="..."
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
+                    src="/images/ml2.jpg"
                     className="w-full align-middle rounded-t-lg"
                   />
                   <blockquote className="relative p-8 mb-4">
@@ -216,7 +215,7 @@ export default function AboutContent() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                  src="/images/ml1.png"
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -238,7 +237,9 @@ export default function AboutContent() {
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">{getTextValueByKey("Hero-title")}</h2>
+                <h2 className="text-4xl font-semibold">
+                  {getTextValueByKey("Hero-title")}
+                  </h2>
                 <p className="text-lg leading-relaxed m-4 text-blueGray-500">
                 {getTextValueByKey("Hero-p")}
                 </p>
@@ -308,7 +309,7 @@ export default function AboutContent() {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
-                      Want to work with us?
+                    Send your feedback
                     </h4>
                     <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
                       Complete this form and we will get back to you in 24

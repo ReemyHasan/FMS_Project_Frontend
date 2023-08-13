@@ -67,3 +67,19 @@ export const trainModel = async ( token:any,role:any) => {
   }
 }
 };
+
+export const accuracy = async ( token:any,role:any) => {
+  if(role=="admin"){
+  try {
+    const response =await axios.get(MODELURL+"accuracy", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    message.error("error!!"+error);
+
+  }
+}
+};

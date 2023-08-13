@@ -15,9 +15,9 @@ export default function Setup() {
         <title>{t("setup")}</title>
       </Head>
       <AppLayout>
-        <main className={`app-main-container`}>
+        {/* <main className={`app-main-container`}> */}
           <SettingAboutContent />
-          </main>
+          {/* </main> */}
       </AppLayout>
       </ProtectedRoute>
     </Fragment>
